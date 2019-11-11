@@ -11,10 +11,10 @@ int main()
 
 	testBoard.render();
 
-	testBoard.getPiece(1, 1)->move(testBoard.getCell(1, 5));
+	testBoard.getPiece(3, 6)->move(testBoard.getCell(3, 5));
 
 	std::cout << std::endl;
 	testBoard.render();
-
+	
 	return 0;
 }

@@ -125,21 +125,29 @@
   <ItemGroup>
     <ClCompile Include="bishop.cpp" />
     <ClCompile Include="board.cpp" />
+    <ClCompile Include="GoldGeneral.cpp" />
     <ClCompile Include="king.cpp" />
+    <ClCompile Include="Knight.cpp" />
+    <ClCompile Include="Lance.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pawn.cpp" />
     <ClCompile Include="pieces.cpp" />
     <ClCompile Include="rook.cpp" />
+    <ClCompile Include="SilverGeneral.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bishop.h" />
     <ClInclude Include="board.h" />
     <ClInclude Include="Cell.h" />
+    <ClInclude Include="GoldGeneral.h" />
     <ClInclude Include="king.h" />
+    <ClInclude Include="Knight.h" />
+    <ClInclude Include="Lance.h" />
     <ClInclude Include="pawn.h" />
     <ClInclude Include="piece.h" />
     <ClInclude Include="piecesHeader.h" />
     <ClInclude Include="rook.h" />
+    <ClInclude Include="SilverGeneral.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

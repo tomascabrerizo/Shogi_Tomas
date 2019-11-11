@@ -4,6 +4,7 @@
 
 king::king(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 {
+	//TODO: initiallize currentPiece promote and cap[tured int pieces
 	captured = false;
 	promoted = false;
 	player == PLAYER_UP ? position->kanji = " Kv |" : position->kanji = " K^ |";

@@ -1,2 +1,6 @@
-﻿  main.cpp
+﻿  board.cpp
+  Lance.cpp
+  main.cpp
+  pieces.cpp
+  Generando código...
   Shogi.vcxproj -> D:\Dev\Shogi\Debug\Shogi.exe

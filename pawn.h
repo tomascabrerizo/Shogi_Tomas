@@ -5,6 +5,7 @@
 class pawn : public piece
 {
 public:
+	/*Constructor and Destrucor*/
 	pawn(Cell* boardPosition, Owner player);
 	~pawn();
 	void move(Cell* move);

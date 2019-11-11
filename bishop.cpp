@@ -5,10 +5,11 @@
 
 bishop::bishop(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 {
+	//TODO: initiallize currentPiece promote and cap[tured int pieces
 	captured = false;
 	promoted = false;
 	player == PLAYER_UP ? position->kanji = " Bv |" : position->kanji = " B^ |";
-	/*Setting rook to the current board position*/
+	/*Setting bishop to the current board position*/
 	position->currentPiece = this;
 }
 

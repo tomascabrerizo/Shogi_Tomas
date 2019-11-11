@@ -45,6 +45,30 @@ Board::Board()
 	player1[11] = new bishop(&board[1 + 7 * 9], PLAYER_DOWN);
 	player2[11] = new bishop(&board[7 + 1 * 9], PLAYER_UP);
 
+	//Player1 and Player 2 Gold Generlars
+	player1[12] = new GoldGeneral(&board[3 + 8 * 9], PLAYER_DOWN);
+	player1[13] = new GoldGeneral(&board[5 + 8 * 9], PLAYER_DOWN);
+	player2[12] = new GoldGeneral(&board[3 + 0 * 9], PLAYER_UP);
+	player2[13] = new GoldGeneral(&board[5 + 0 * 9], PLAYER_UP);
+
+	//Player1 and Player 2 Silver Generlars
+	player1[14] = new SilverGeneral(&board[2 + 8 * 9], PLAYER_DOWN);
+	player1[15] = new SilverGeneral(&board[6 + 8 * 9], PLAYER_DOWN);
+	player2[14] = new SilverGeneral(&board[2 + 0 * 9], PLAYER_UP);
+	player2[15] = new SilverGeneral(&board[6 + 0 * 9], PLAYER_UP);
+
+	//Player1 and Player2 knights
+	player1[16] = new Knight(&board[1 + 8 * 9], PLAYER_DOWN);
+	player1[17] = new Knight(&board[7 + 8 * 9], PLAYER_DOWN);
+	player2[16] = new Knight(&board[1 + 0 * 9], PLAYER_UP);
+	player2[17] = new Knight(&board[7 + 0 * 9], PLAYER_UP);
+
+	//Player1 and Player2 Lancers
+	player1[18] = new Lance(&board[0 + 8 * 9], PLAYER_DOWN);
+	player1[19] = new Lance(&board[8 + 8 * 9], PLAYER_DOWN);
+	player2[18] = new Lance(&board[0 + 0 * 9], PLAYER_UP);
+	player2[19] = new Lance(&board[8 + 0 * 9], PLAYER_UP);
+
 }
 
 Board::~Board()

@@ -1,6 +1,8 @@
 #pragma once
 struct Cell;
 
+//TODO: Change the Players name to:
+//PLAYER_TOP and PLAYER_BOTTOM
 enum Owner
 {
 	PLAYER_UP,
