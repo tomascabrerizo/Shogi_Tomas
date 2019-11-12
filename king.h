@@ -7,6 +7,6 @@ class king : public piece
 public:
 	king(Cell* boardPosition, Owner player);
 	~king();
-	void move(Cell* move);
+	bool validPosition(Cell* move, Owner player);
 };
 

@@ -6,6 +6,7 @@ public:
 	/*Constructor and destructor*/
 	GoldGeneral(Cell* boardPosition, Owner player);
 	~GoldGeneral();
-	void move(Cell* move);
+	//void move(Cell* move);
+	bool validPosition(Cell* move, Owner player);
 };
 

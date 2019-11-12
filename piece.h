@@ -3,6 +3,7 @@ struct Cell;
 
 //TODO: Change the Players name to:
 //PLAYER_TOP and PLAYER_BOTTOM
+
 enum Owner
 {
 	PLAYER_UP,
@@ -18,17 +19,21 @@ protected:
 	Owner player;
 	bool captured;
 	bool promoted;
+	const char* name;
 
 public:
 	/*Constructor and Destructos*/
 	piece(Cell* boardPosition, Owner player);
 	~piece();
 	/*mechanics functions*/
-	virtual void move(Cell* move) = 0;
+	void move(Cell* move);
+	virtual bool validPosition(Cell* move, Owner player) = 0;
 	void setPosition(Cell* boardPosition);
 	void promote();
 	void setCapture();
 	Cell* getPosition();
+	Owner getPlayer();
 	void setPlayer(Owner player);
+	const char* getName();
 };
 

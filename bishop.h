@@ -7,6 +7,6 @@ class bishop : public piece
 public:
 	bishop(Cell* boardPosition, Owner player);
 	~bishop();
-	void move(Cell* move);
+	bool validPosition(Cell* move, Owner player);
 };
 

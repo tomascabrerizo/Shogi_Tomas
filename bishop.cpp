@@ -11,6 +11,7 @@ bishop::bishop(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 	player == PLAYER_UP ? position->kanji = " Bv |" : position->kanji = " B^ |";
 	/*Setting bishop to the current board position*/
 	position->currentPiece = this;
+	name = "Bishop";
 }
 
 bishop::~bishop()
@@ -18,21 +19,11 @@ bishop::~bishop()
 	position = NULL;
 }
 
-void bishop::move(Cell* move)
+bool bishop::validPosition(Cell* move, Owner player)
 {
 	if (abs(move->x - position->x) == abs(move->y - position->y))
 	{
-		/*Bishop canged position, free current position*/
-		position->kanji = "    |";
-		position->currentPiece = NULL;
-		position = move;
-		/*Bishop Pawn new Position*/
-		player == PLAYER_UP ? position->kanji = " Bv| " : position->kanji = " B^ |";
-		position->currentPiece = this;
-		std::cout << "Bishop Moved" << std::endl;
+		return true;
 	}
-	else
-	{
-		std::cout << "Bishop cannot move to that cell" << std::endl;
-	}
+	return false;
 }

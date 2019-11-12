@@ -7,6 +7,7 @@ public:
 	/*Constructor and Destructor*/
 	Lance(Cell* boardPosition, Owner player);
 	~Lance();
-	void move(Cell* move);
+	bool validPosition(Cell* move, Owner player);
+
 };
 

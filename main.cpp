@@ -1,5 +1,5 @@
 #include <iostream>
-#include "board.h"
+#include "Game.h"
 
 int main()
 {
@@ -7,14 +7,13 @@ int main()
 	std::cout << "|      Tom's Shogi!    |" << std::endl;
 	std::cout << "|----------------------|" << std::endl;
 
-	Board testBoard;
+	Game ShogiGame;
 
-	testBoard.render();
-
-	testBoard.getPiece(3, 6)->move(testBoard.getCell(3, 5));
-
-	std::cout << std::endl;
-	testBoard.render();
+	while (ShogiGame.isRunning())
+	{
+		ShogiGame.render();
+		ShogiGame.update();
+	}
 	
 	return 0;
 }

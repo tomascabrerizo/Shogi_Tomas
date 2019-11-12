@@ -7,6 +7,7 @@ class rook : public piece
 public:
 	rook(Cell* boardPosition, Owner player);
 	~rook();
-	void move(Cell* move);
+	bool validPosition(Cell* move, Owner player);
+
 };
 

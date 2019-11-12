@@ -1,6 +1,14 @@
-﻿  board.cpp
+﻿  Game.cpp
+  GoldGeneral.cpp
+  Knight.cpp
   Lance.cpp
+  SilverGeneral.cpp
+  bishop.cpp
+  board.cpp
+  king.cpp
   main.cpp
+  pawn.cpp
   pieces.cpp
+  rook.cpp
   Generando código...
   Shogi.vcxproj -> D:\Dev\Shogi\Debug\Shogi.exe

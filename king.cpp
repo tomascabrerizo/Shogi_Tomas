@@ -9,6 +9,7 @@ king::king(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 	promoted = false;
 	player == PLAYER_UP ? position->kanji = " Kv |" : position->kanji = " K^ |";
 	position->currentPiece = this;
+	name = "King";
 }
 
 king::~king()
@@ -16,25 +17,15 @@ king::~king()
 	position = NULL;
 }
 
-void king::move(Cell* move)
+bool king::validPosition(Cell* move, Owner player)
 {
-	//check if the move input by the player it is posible
 	if ((move->x == position->x + 1 || move->x == position->x - 1 || move->x == position->x) &&
 		(move->y == position->y + 1 || move->y == position->y - 1 || move->y == position->y))
 	{
-		/*King canged position, free current position*/
-		position->kanji = "    |";
-		position->currentPiece = NULL;
-		position = move;
-		/*Set King new position*/
-		player == PLAYER_UP ? position->kanji = " Kv|" : position->kanji = " K^ |";
-		position->currentPiece = this;
-		std::cout << "King Moved" << std::endl;
+		return true;
 	}
-	else
-	{
-		std::cout << "The king cannot move to that cell" << std::endl;
-	}
+	return false;
 }
+
 
 

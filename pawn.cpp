@@ -10,6 +10,7 @@ pawn::pawn(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 	player == PLAYER_UP ? position->kanji = " Pv |" : position->kanji = " P^ |";
 	/*Setting rook to the current board position*/
 	position->currentPiece = this;
+	name = "Pawn";
 }
 
 pawn::~pawn()
@@ -17,42 +18,22 @@ pawn::~pawn()
 	position = NULL;
 }
 
-void pawn::move(Cell* move)
+bool pawn::validPosition(Cell* move, Owner player)
 {
 	if (player == PLAYER_DOWN)
 	{
 		if ((position->x == move->x) && (position->y == (move->y + 1)))
 		{
-			/*Pawn canged position, free current position*/
-			position->kanji = "    |";
-			position->currentPiece = NULL;
-			position = move;
-			/*Set Pawn new Position*/
-			player == PLAYER_UP ? position->kanji = " Pv |" : position->kanji = " P^ |";
-			position->currentPiece = this;
-			std::cout << "Pawn Moved" << std::endl;
-		}
-		else
-		{
-			std::cout << "Pawn cannot move to that cell" << std::endl;
+			bool test = ((position->x == move->x) && (position->y == (move->y + 1)));
+			return true;
 		}
 	}
 	else if ((player == PLAYER_UP))
 	{
 		if ((position->x == move->x) && (position->y == (move->y - 1)))
 		{
-			/*Pawn canged position, free current position*/
-			position->kanji = "    |";
-			position->currentPiece = NULL;
-			position = move;
-			/*Set Pawn new Position*/
-			player == PLAYER_UP ? position->kanji = " Pv |" : position->kanji = " P^ |";
-			position->currentPiece = this;
-			std::cout << "Pawn Moved" << std::endl;
-		}
-		else
-		{
-			std::cout << "Pawn cannot move to that cell" << std::endl;
+			return true;
 		}
 	}
+	return false;
 }
