@@ -3,11 +3,13 @@
 
 class Lance : public piece
 {
+
+private:
+	bool validPosition(Cell* move, Owner player);
+
 public:
 	/*Constructor and Destructor*/
 	Lance(Cell* boardPosition, Owner player);
 	~Lance();
-	bool validPosition(Cell* move, Owner player);
-
 };
 

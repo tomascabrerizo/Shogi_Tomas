@@ -2,11 +2,12 @@
 #include "piece.h"
 class GoldGeneral : public piece
 {
+private:
+	bool validPosition(Cell* move, Owner player);
+
 public:
 	/*Constructor and destructor*/
 	GoldGeneral(Cell* boardPosition, Owner player);
 	~GoldGeneral();
-	//void move(Cell* move);
-	bool validPosition(Cell* move, Owner player);
 };
 

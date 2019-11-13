@@ -4,10 +4,12 @@
 //inheritance from virtual class piece
 class rook : public piece
 {
+private:
+	bool validPosition(Cell* move, Owner player);
+
 public:
 	rook(Cell* boardPosition, Owner player);
 	~rook();
-	bool validPosition(Cell* move, Owner player);
 
 };
 

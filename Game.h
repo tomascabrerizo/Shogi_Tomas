@@ -7,7 +7,7 @@ class Game
 private:
 	bool gameRunning;
 	Board shogi;
-	void checkNumber(int& num);
+	int checkedNumber(const char* message);
 
 public:
 	/*Constructor and Destructor*/

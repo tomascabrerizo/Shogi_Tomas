@@ -20,7 +20,7 @@ void piece::move(Cell* move)
 	{
 		if (move->currentPiece != NULL && move->currentPiece->getPlayer() == player)
 		{
-			std::cout << "This cell has your" << move->currentPiece->getName() << std::endl;
+			std::cout << "This cell has your: " << move->currentPiece->getName() << std::endl;
 		}
 		else if (move->currentPiece != NULL && move->currentPiece->getPlayer() != player)
 		{
@@ -55,7 +55,7 @@ void piece::move(Cell* move)
 	}
 	else
 	{
-		std::cout << "The" << name << " cannot move to that cell" << std::endl;
+		std::cout << "The " << name << " cannot move to that cell" << std::endl;
 	}
 }
 

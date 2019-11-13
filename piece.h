@@ -20,6 +20,7 @@ protected:
 	bool captured;
 	bool promoted;
 	const char* name;
+	virtual bool validPosition(Cell* move, Owner player) = 0;
 
 public:
 	/*Constructor and Destructos*/
@@ -27,7 +28,6 @@ public:
 	~piece();
 	/*mechanics functions*/
 	void move(Cell* move);
-	virtual bool validPosition(Cell* move, Owner player) = 0;
 	void setPosition(Cell* boardPosition);
 	void promote();
 	void setCapture();

@@ -3,11 +3,11 @@
 
 class Knight : public piece
 {
+private:
+	bool validPosition(Cell* move, Owner player);
 public:
 	/*Constructor and Destructor*/
 	Knight(Cell* boardPosition, Owner player);
 	~Knight();
-	bool validPosition(Cell* move, Owner player);
-
 };
 

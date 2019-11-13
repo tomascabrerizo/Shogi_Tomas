@@ -15,39 +15,11 @@ void Game::update()
 	int xS, yS; /*Source cell*/
 	int xD, yD; /*Destination cell*/
 	
-	//If at any time we input -1 end the game @temporal
-	std::cout << "From cell x:" << std::endl;
-	std::cin >> xS;
-	if (xS == -1)
-	{
-		gameRunning = false;
-		return;
-	}
+	xS = checkedNumber("From Cell X: ");
+	yS = checkedNumber("From Cell Y: ");
 
-	//TODO: Make check function for cin >> input
-	std::cout << "From cell y:" << std::endl;
-	std::cin >> yS;
-	if (yS == -1)
-	{
-		gameRunning = false;
-		return;
-	}
-	//TODO: Make check function for cin >> input
-	std::cout << "To cell x:" << std::endl;
-	std::cin >> xD;
-	if (xD == -1)
-	{
-		gameRunning = false;
-		return;
-	}
-	//TODO: Make check function for cin >> input
-	std::cout << "To cell y:" << std::endl;
-	std::cin >> yD;
-	if (yD == -1)
-	{
-		gameRunning = false;
-		return;
-	}
+	xD = checkedNumber("To Cell X: ");
+	yD = checkedNumber("To Cell Y: ");
 
 	if (shogi.getCell(xS, yS)->currentPiece != NULL)
 		shogi.getPiece(xS, yS)->move(shogi.getCell(xD, yD));
@@ -60,12 +32,28 @@ void Game::render()
 	shogi.render();
 }
 
-void Game::checkNumber(int& num)
+int Game::checkedNumber(const char* message)
 {
-	while (num < 1 || num > 8)
+	while (true)
 	{
-		std::cout << "Enter number between -1(to close) and 8: " << std::endl;
+		std::cout << message << std::endl;
+		int num;
 		std::cin >> num;
+
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(32767, '\n');
+		}
+		else
+		{
+			std::cin.ignore(32767, '\n');
+
+			if (num >= -1 && num <= 8)
+			{
+				return num;
+			}
+		}
 	}
 }
 

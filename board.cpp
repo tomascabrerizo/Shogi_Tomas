@@ -42,8 +42,8 @@ Board::Board()
 	}
 
 	//Player1 and player2 bishop
-	player1[11] = new bishop(&board[1 + 7 * 9], PLAYER_DOWN);
-	player2[11] = new bishop(&board[7 + 1 * 9], PLAYER_UP);
+	player1[11] = new bishop(&board[1 + 7 * 9], PLAYER_DOWN, &board[0 + 0 * 9]);
+	player2[11] = new bishop(&board[7 + 1 * 9], PLAYER_UP, &board[0 + 0 * 9]);
 
 	//Player1 and Player 2 Gold Generlars
 	player1[12] = new GoldGeneral(&board[3 + 8 * 9], PLAYER_DOWN);
