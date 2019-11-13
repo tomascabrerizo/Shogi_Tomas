@@ -28,6 +28,7 @@ public:
 	~piece();
 	/*mechanics functions*/
 	void move(Cell* move);
+	/*Getters and Setters*/
 	void setPosition(Cell* boardPosition);
 	void promote();
 	void setCapture();

@@ -31,8 +31,8 @@ Board::Board()
 	player2[0] = new king(&board[4 + 0 * 9], PLAYER_UP);
 
 	//player1 and player2 rook;
-	player1[1] = new rook(&board[7 + 7 * 9], PLAYER_DOWN);
-	player2[1] = new rook(&board[1 + 1 * 9], PLAYER_UP);
+	player1[1] = new rook(&board[7 + 7 * 9], PLAYER_DOWN, &board[0 + 0 * 9]);
+	player2[1] = new rook(&board[1 + 1 * 9], PLAYER_UP, &board[0 + 0 * 9]);
 
 	//Player1 and player2 pawns
 	for (int i = 2; i < 11; i++)
@@ -64,10 +64,10 @@ Board::Board()
 	player2[17] = new Knight(&board[7 + 0 * 9], PLAYER_UP);
 
 	//Player1 and Player2 Lancers
-	player1[18] = new Lance(&board[0 + 8 * 9], PLAYER_DOWN);
-	player1[19] = new Lance(&board[8 + 8 * 9], PLAYER_DOWN);
-	player2[18] = new Lance(&board[0 + 0 * 9], PLAYER_UP);
-	player2[19] = new Lance(&board[8 + 0 * 9], PLAYER_UP);
+	player1[18] = new Lance(&board[0 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]);
+	player1[19] = new Lance(&board[8 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]);
+	player2[18] = new Lance(&board[0 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]);
+	player2[19] = new Lance(&board[8 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]);
 
 }
 

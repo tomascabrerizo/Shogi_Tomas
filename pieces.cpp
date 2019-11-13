@@ -25,9 +25,9 @@ void piece::move(Cell* move)
 		else if (move->currentPiece != NULL && move->currentPiece->getPlayer() != player)
 		{
 			/*piece canged position, free current position*/
-			/*Set the kanji in the new position*/
-			move->currentPiece->setCapture();
 			/*land in enemy piece, capture it*/
+			move->currentPiece->setCapture();
+			/*Set the kanji in the new position*/
 			move->kanji = position->kanji;
 			/*Clear the old position kanji*/
 			position->kanji = "    |";
