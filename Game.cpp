@@ -23,8 +23,8 @@ void Game::update()
 	if (playerTurn == PLAYER_UP)
 	{
 		std::string playerUP = "\n|-----------------|\n"
-			                     "|----PLAYER_UP----|\n"
-		                         "|-----------------|";
+								"|----PLAYER_UP----|\n"
+								"|-----------------|";
 
 		std::cout << playerUP << std::endl;
 		if (shogi.getReInsertPU())
@@ -94,8 +94,8 @@ void Game::update()
 	{
 		/*PLAYER BOTTOM*/
 		std::string playerBOTTOM = "\n|-----------------|\n"
-								     "|--PLAYER_BOTTOM--|\n"
-			                         "|-----------------|";
+									"|--PLAYER_BOTTOM--|\n"
+									"|-----------------|";
 											
 
 		std::cout << playerBOTTOM << std::endl;
