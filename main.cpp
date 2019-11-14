@@ -3,15 +3,15 @@
 
 int main()
 {
-	std::cout << "|----------------------|" << std::endl;
-	std::cout << "|      Tom's Shogi!    |" << std::endl;
-	std::cout << "|----------------------|" << std::endl;
+	std::cout << "|---------------------------------------|" << std::endl;
+	std::cout << "|---------------TOMAS-SHOGI-------------|" << std::endl;
+	std::cout << "|---------------------------------------|" << std::endl;
 
 	Game ShogiGame;
+	bool fistRender = false;
 
 	while (ShogiGame.isRunning())
 	{
-		bool fistRender = false;
 		if (!fistRender)
 		{
 			ShogiGame.render();

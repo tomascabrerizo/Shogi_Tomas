@@ -42,7 +42,7 @@ public:
 	~piece();
 
 	/*mechanics functions*/
-	void move(Cell* move);
+	bool move(Cell* move);
 
 	/*Getters and Setters*/
 	const char* getKanjiTop();

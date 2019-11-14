@@ -82,6 +82,7 @@ Board::~Board()
 
 void Board::update()
 {
+	/*Check for new captured pieces, if one piece is capture change sides*/
 	for (int i = 0; i < player1.size(); i++)
 	{
 		if (player1[i]->isCapture())
@@ -92,7 +93,7 @@ void Board::update()
 			player1.erase(player1.begin()+i);
 		}
 	}
-
+	/*Check for new captured pieces, if one piece is capture change sides*/
 	for (int i = 0; i < player2.size(); i++)
 	{
 		if (player2[i]->isCapture())

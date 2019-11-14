@@ -13,14 +13,14 @@ piece::piece(Cell* boardPosition, Owner player)
 
 }
 
-void piece::move(Cell* move)
+bool piece::move(Cell* move)
 {
-	bool test = validPosition(move, player);
 	if (validPosition(move, player))
 	{
 		if (move->currentPiece != NULL && move->currentPiece->getPlayer() == player)
 		{
 			std::cout << "This cell has your: " << move->currentPiece->getName() << std::endl;
+			return false;
 		}
 		else if (move->currentPiece != NULL && move->currentPiece->getPlayer() != player)
 		{
@@ -37,6 +37,7 @@ void piece::move(Cell* move)
 			//TODO: simply render the PLAYER_DOWN character
 			position->currentPiece = this;
 			std::cout << name << " Moved" << std::endl;
+			return true;
 		}
 		else
 		{
@@ -51,12 +52,15 @@ void piece::move(Cell* move)
 			//TODO: simply render the PLAYER_DOWN character
 			position->currentPiece = this;
 			std::cout << name << " Moved" << std::endl;
+			return true;
 		}
 	}
 	else
 	{
 		std::cout << "The " << name << " cannot move to that cell" << std::endl;
+		return false;
 	}
+	return false;
 }
 
 const char* piece::getKanjiTop()
