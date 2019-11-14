@@ -12,5 +12,7 @@ private:
 public:
 	bishop(Cell* boardPosition, Owner player, Cell* fistCellofBoard);
 	~bishop();
+
+	void promote();
 };
 

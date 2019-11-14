@@ -9,5 +9,7 @@ public:
 	/*Constructor and Destructor*/
 	Knight(Cell* boardPosition, Owner player);
 	~Knight();
+
+	void promote();
 };
 

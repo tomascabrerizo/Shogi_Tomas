@@ -12,6 +12,7 @@ private:
 public:
 	rook(Cell* boardPosition, Owner player, Cell* fistCellofBoard);
 	~rook();
+	void promote();
 
 };
 

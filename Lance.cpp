@@ -5,13 +5,13 @@
 
 Lance::Lance(Cell* boardPosition, Owner player, Cell* fistCellofBoard) : piece(boardPosition, player)
 {
-	//TODO: initiallize currentPiece promote and captured in pieces
-	captured = false;
-	promoted = false;
-	player == PLAYER_UP ? position->kanji = " Lv |" : position->kanji = " L^ |";
+	kanjiBottom = " L^ |";
+	kanjiTop = " Lv |";
+
+	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	/*Setting Lance to the current board position*/
 	position->currentPiece = this;
-	name = "Lance";
+	name = LANCE;
 	this->fistCellofBoard = fistCellofBoard;
 }
 
@@ -20,90 +20,120 @@ Lance::~Lance()
 	position = NULL;
 }
 
+void Lance::promote()
+{
+	promoted = true;
+	player == PLAYER_UP ? position->kanji = "+Lv |" : position->kanji = "+L^ |";
+}
+
 bool Lance::validPosition(Cell* move, Owner player)
 {
-	if (player == PLAYER_DOWN)
+	if (!promoted)
 	{
-		if ((position->y > move->y) && (position->x == move->x))
+		if (player == PLAYER_DOWN)
 		{
-			//TODO: make a function to not repeat y PLAYER_UP and PLAYER_DOWN
-
-			//Save movement Distance
-			int distanceX = move->x - position->x;
-			int distanceY = move->y - position->y;
-
-			/*subtract one to only check the cells between the movement*/
-			distanceX > 0 ? distanceX-- : distanceX;
-			distanceX < 0 ? distanceX++ : distanceX;
-
-			distanceY > 0 ? distanceY-- : distanceY;
-			distanceY < 0 ? distanceY++ : distanceY;
-
-			while (distanceX != 0 || distanceY != 0)
+			if ((position->y > move->y) && (position->x == move->x))
 			{
+				//TODO: make a function to not repeat y PLAYER_UP and PLAYER_DOWN
 
-				if (fistCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
+				//Save movement Distance
+				int distanceX = move->x - position->x;
+				int distanceY = move->y - position->y;
+
+				/*subtract one to only check the cells between the movement*/
+				distanceX > 0 ? distanceX-- : distanceX;
+				distanceX < 0 ? distanceX++ : distanceX;
+
+				distanceY > 0 ? distanceY-- : distanceY;
+				distanceY < 0 ? distanceY++ : distanceY;
+
+				while (distanceX != 0 || distanceY != 0)
 				{
-					//TODO: Simplify this if statements
-					//Change the distance to check the next cell
-					if (distanceX > 0)
-						distanceX--;
-					if (distanceY > 0)
-						distanceY--;
-					if (distanceX < 0)
-						distanceX++;
-					if (distanceY < 0)
-						distanceY++;
+
+					if (fistCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
+					{
+						//TODO: Simplify this if statements
+						//Change the distance to check the next cell
+						if (distanceX > 0)
+							distanceX--;
+						if (distanceY > 0)
+							distanceY--;
+						if (distanceX < 0)
+							distanceX++;
+						if (distanceY < 0)
+							distanceY++;
+					}
+					else
+					{
+						return false;
+					}
 				}
-				else
-				{
-					return false;
-				}
+
+				return true;
 			}
+		}
+		else if (player == PLAYER_UP)
+		{
+			if ((position->y < move->y) && (position->x == move->x))
+			{
+				//TODO: make a function to not repeat y PLAYER_UP and PLAYER_DOWN
 
-			return true;
+				//Save movement Distance
+				int distanceX = move->x - position->x;
+				int distanceY = move->y - position->y;
+
+				/*subtract one to only check the cells between the movement*/
+				distanceX > 0 ? distanceX-- : distanceX;
+				distanceX < 0 ? distanceX++ : distanceX;
+
+				distanceY > 0 ? distanceY-- : distanceY;
+				distanceY < 0 ? distanceY++ : distanceY;
+
+				while (distanceX != 0 || distanceY != 0)
+				{
+
+					if (fistCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
+					{
+						//TODO: Simplify this if statements
+						//Change the distance to check the next cell
+						if (distanceX > 0)
+							distanceX--;
+						if (distanceY > 0)
+							distanceY--;
+						if (distanceX < 0)
+							distanceX++;
+						if (distanceY < 0)
+							distanceY++;
+					}
+					else
+					{
+						return false;
+					}
+				}
+
+				return true;
+			}
 		}
 	}
-	else if (player == PLAYER_UP)
+	else /*If the lance promote, its moves like gold general*/
 	{
-		if ((position->y < move->y) && (position->x == move->x))
+		if (player == PLAYER_DOWN)
 		{
-			//TODO: make a function to not repeat y PLAYER_UP and PLAYER_DOWN
-
-			//Save movement Distance
-			int distanceX = move->x - position->x;
-			int distanceY = move->y - position->y;
-
-			/*subtract one to only check the cells between the movement*/
-			distanceX > 0 ? distanceX-- : distanceX;
-			distanceX < 0 ? distanceX++ : distanceX;
-
-			distanceY > 0 ? distanceY-- : distanceY;
-			distanceY < 0 ? distanceY++ : distanceY;
-
-			while (distanceX != 0 || distanceY != 0)
+			if (((position->y == (move->y + 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
+				((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||
+				((position->y == move->y - 1) && (position->x == move->x)))
 			{
-
-				if (fistCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
-				{
-					//TODO: Simplify this if statements
-					//Change the distance to check the next cell
-					if (distanceX > 0)
-						distanceX--;
-					if (distanceY > 0)
-						distanceY--;
-					if (distanceX < 0)
-						distanceX++;
-					if (distanceY < 0)
-						distanceY++;
-				}
-				else
-				{
-					return false;
-				}
+				return true;
 			}
-
-			return true;
+		}
+		else if (player == PLAYER_UP)
+		{
+			if (((position->y == (move->y - 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
+				((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||
+				((position->y == move->y + 1) && (position->x == move->x)))
+			{
+				return true;
+			}
 		}
 	}
 	return false;

@@ -4,12 +4,12 @@
 
 king::king(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 {
-	//TODO: initiallize currentPiece promote and cap[tured int pieces
-	captured = false;
-	promoted = false;
-	player == PLAYER_UP ? position->kanji = " Kv |" : position->kanji = " K^ |";
+	kanjiBottom = " K^ |";
+	kanjiTop = " Kv |";
+
+	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	position->currentPiece = this;
-	name = "King";
+	name = KING;
 }
 
 king::~king()

@@ -4,13 +4,13 @@
 
 Knight::Knight(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 {
-	//TODO: initiallize currentPiece promote and captured in pieces
-	captured = false;
-	promoted = false;
-	player == PLAYER_UP ? position->kanji = " Nv |" : position->kanji = " N^ |";
+	kanjiBottom = " N^ |";
+	kanjiTop = " Nv |";
+
+	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	/*Setting Knight to the current board position*/
 	position->currentPiece = this;
-	name = "Knight";
+	name = KNIGHT;
 }
 
 Knight::~Knight()
@@ -18,20 +18,50 @@ Knight::~Knight()
 	position = NULL;
 }
 
+void Knight::promote()
+{
+	promoted = true;
+	player == PLAYER_UP ? position->kanji = "+Nv |" : position->kanji = "+N^ |";
+}
+
 bool Knight::validPosition(Cell* move, Owner player)
 {
-	if (player == PLAYER_DOWN)
+	if (!promoted)
 	{
-		if ((position->y == move->y + 2) && ((position->x == move->x - 1) || (position->x == move->x + 1)))
+		if (player == PLAYER_DOWN)
 		{
-			return true;
+			if ((position->y == move->y + 2) && ((position->x == move->x - 1) || (position->x == move->x + 1)))
+			{
+				return true;
+			}
+		}
+		else if (player == PLAYER_UP)
+		{
+			if ((position->y == move->y - 2) && ((position->x == move->x - 1) || (position->x == move->x + 1)))
+			{
+				return true;
+			}
 		}
 	}
-	else if (player == PLAYER_UP)
+	else /*If the knight promote, its moves like gold general*/
 	{
-		if ((position->y == move->y - 2) && ((position->x == move->x - 1) || (position->x == move->x + 1)))
+		if (player == PLAYER_DOWN)
 		{
-			return true;
+			if (((position->y == (move->y + 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
+				((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||
+				((position->y == move->y - 1) && (position->x == move->x)))
+			{
+				return true;
+			}
+		}
+		else if (player == PLAYER_UP)
+		{
+			if (((position->y == (move->y - 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
+				((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||
+				((position->y == move->y + 1) && (position->x == move->x)))
+			{
+				return true;
+			}
 		}
 	}
 	return false;

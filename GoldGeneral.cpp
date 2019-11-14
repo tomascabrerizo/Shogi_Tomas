@@ -4,13 +4,13 @@
 
 GoldGeneral::GoldGeneral(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 {
-	//TODO: initiallize currentPiece promote and cap[tured int pieces
-	captured = false;
-	promoted = false;
-	player == PLAYER_UP ? position->kanji = " Gv |" : position->kanji = " G^ |";
+	kanjiBottom = " G^ |";
+	kanjiTop = " Gv |";
+
+	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	/*Setting Gold General to the current board position*/
 	position->currentPiece = this;
-	name = "Golden General";
+	name = GOLDEN_GENERAL;
 }
 
 GoldGeneral::~GoldGeneral()

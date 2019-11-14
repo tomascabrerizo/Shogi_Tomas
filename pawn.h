@@ -11,5 +11,7 @@ public:
 	/*Constructor and Destrucor*/
 	pawn(Cell* boardPosition, Owner player);
 	~pawn();
+
+	void promote();
 };
 

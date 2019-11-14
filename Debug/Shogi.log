@@ -1,2 +1,20 @@
-﻿  Lance.cpp
+﻿  Game.cpp
+D:\Dev\Shogi\Shogi\Game.cpp(34,22): warning C4018: '<': no coinciden signed/unsigned
+  GoldGeneral.cpp
+  Knight.cpp
+  Lance.cpp
+  SilverGeneral.cpp
+  bishop.cpp
+  board.cpp
+D:\Dev\Shogi\Shogi\Game.cpp(59,22): warning C4018: '<': no coinciden signed/unsigned
+D:\Dev\Shogi\Shogi\board.cpp(85,20): warning C4018: '<': no coinciden signed/unsigned
+D:\Dev\Shogi\Shogi\board.cpp(96,20): warning C4018: '<': no coinciden signed/unsigned
+D:\Dev\Shogi\Shogi\board.cpp(111,20): warning C4018: '<': no coinciden signed/unsigned
+  king.cpp
+  main.cpp
+  pawn.cpp
+  pieces.cpp
+  rook.cpp
+  Generando código...
+D:\Dev\Shogi\Shogi\board.cpp(132,20): warning C4018: '<': no coinciden signed/unsigned
   Shogi.vcxproj -> D:\Dev\Shogi\Debug\Shogi.exe

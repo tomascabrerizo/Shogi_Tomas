@@ -13,5 +13,7 @@ public:
 	/*Constructor and Destructor*/
 	Lance(Cell* boardPosition, Owner player, Cell* fistCellofBoard);
 	~Lance();
+
+	void promote();
 };
 

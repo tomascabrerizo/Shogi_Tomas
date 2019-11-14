@@ -59,6 +59,16 @@ void piece::move(Cell* move)
 	}
 }
 
+const char* piece::getKanjiTop()
+{
+	return kanjiTop;
+}
+
+const char* piece::getKanjiBottom()
+{
+	return kanjiBottom;
+}
+
 piece::~piece()
 {
 	position = NULL;
@@ -67,6 +77,7 @@ piece::~piece()
 void piece::setPosition(Cell* boardPosition)
 {
 	position = boardPosition;
+	position->currentPiece = this;
 }
 
 void piece::promote()
@@ -77,7 +88,23 @@ void piece::promote()
 void piece::setCapture()
 {
 	std::cout << "The " << name << " was Captured" << std::endl;
+	/*Wen a piece is capture, its change owner*/
+	position = NULL;
+	/*Change piece owner*/
+	if (this->player == PLAYER_DOWN) this->player = PLAYER_UP;
+	else if (this->player == PLAYER_UP) this->player = PLAYER_DOWN;
+	/*Set Captured*/
 	captured = true;
+}
+
+void piece::setCapture(bool state)
+{
+	captured = state;
+}
+
+bool piece::isCapture()
+{
+	return captured;
 }
 
 Cell* piece::getPosition()

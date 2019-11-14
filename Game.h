@@ -8,6 +8,8 @@ private:
 	bool gameRunning;
 	Board shogi;
 	int checkedNumber(const char* message);
+	std::vector<piece*>* player1;
+	std::vector<piece*>* player2;
 
 public:
 	/*Constructor and Destructor*/
