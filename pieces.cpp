@@ -78,15 +78,27 @@ piece::~piece()
 	position = NULL;
 }
 
-void piece::setPosition(Cell* boardPosition)
+bool piece::setPosition(Cell* boardPosition)
 {
-	position = boardPosition;
-	position->currentPiece = this;
+	//Checks if the board position where we want to set the piece is empty
+	if (boardPosition->currentPiece == NULL)
+	{
+		position = boardPosition;
+		position->currentPiece = this;
+		return true;
+	}
+	return false;
 }
 
-void piece::promote()
+bool piece::promote()
 {
 	promoted = true;
+	return true;
+}
+
+void piece::promote(bool value)
+{
+	promoted = value;
 }
 
 void piece::setCapture()
@@ -94,6 +106,8 @@ void piece::setCapture()
 	std::cout << "The " << name << " was Captured" << std::endl;
 	/*Wen a piece is capture, its change owner*/
 	position = NULL;
+	/*Set promote to false*/
+	promote(false);
 	/*Change piece owner*/
 	if (this->player == PLAYER_DOWN) this->player = PLAYER_UP;
 	else if (this->player == PLAYER_UP) this->player = PLAYER_DOWN;

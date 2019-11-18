@@ -20,10 +20,24 @@ Lance::~Lance()
 	position = NULL;
 }
 
-void Lance::promote()
+bool Lance::promote()
 {
-	promoted = true;
-	player == PLAYER_UP ? position->kanji = "+Lv |" : position->kanji = "+L^ |";
+	if (player == PLAYER_UP && position->y >= 6)
+	{
+		promoted = true;
+		position->kanji = "+Lv |";
+		return true;
+	}
+	else if (player == PLAYER_DOWN && position->y <= 2)
+	{
+		promoted = true;
+		position->kanji = "+L^ |";
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool Lance::validPosition(Cell* move, Owner player)

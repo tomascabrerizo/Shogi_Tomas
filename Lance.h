@@ -14,6 +14,6 @@ public:
 	Lance(Cell* boardPosition, Owner player, Cell* fistCellofBoard);
 	~Lance();
 
-	void promote();
+	bool promote();
 };
 

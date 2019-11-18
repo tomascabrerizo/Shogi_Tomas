@@ -18,10 +18,24 @@ SilverGeneral::~SilverGeneral()
 	position = NULL;
 }
 
-void SilverGeneral::promote()
+bool SilverGeneral::promote()
 {
-	promoted = true;
-	player == PLAYER_UP ? position->kanji = "+Sv |" : position->kanji = "+S^ |";
+	if (player == PLAYER_UP && position->y >= 6)
+	{
+		promoted = true;
+		position->kanji = "+Sv |";
+		return true;
+	}
+	else if (player == PLAYER_DOWN && position->y <= 2)
+	{
+		promoted = true;
+		position->kanji = "+S^ |";
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool SilverGeneral::validPosition(Cell* move, Owner player)

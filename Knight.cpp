@@ -18,10 +18,24 @@ Knight::~Knight()
 	position = NULL;
 }
 
-void Knight::promote()
+bool Knight::promote()
 {
-	promoted = true;
-	player == PLAYER_UP ? position->kanji = "+Nv |" : position->kanji = "+N^ |";
+	if (player == PLAYER_UP && position->y >= 6)
+	{
+		promoted = true;
+		position->kanji = "+Nv |";
+		return true;
+	}
+	else if (player == PLAYER_DOWN && position->y <= 2)
+	{
+		promoted = true;
+		position->kanji = "+N^ |";
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool Knight::validPosition(Cell* move, Owner player)

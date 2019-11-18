@@ -20,11 +20,10 @@ private:
 
 	//Array of pointer to players pieces
 	
-	//TODO: change name to player Bottom and Up
 	/*Bottom Player*/
-	std::vector<piece*> player1;
+	std::vector<piece*> playerBottom;
 	/*Top player*/
-	std::vector<piece*> player2;
+	std::vector<piece*> playerUp;
 
 	bool reInsertPU, reInsertPB;
 
@@ -32,19 +31,23 @@ public:
 	/*Constructor and destructor*/
 	Board();
 	~Board();
+
+	/*Initiallize the board*/
+	void initBoard();
+
+	void render();
+	void update();
+
 	piece* getPiece(int x, int y);
 	Cell* getCell(int x, int y);
 	bool getReInsertPU();
 	bool getReInsertPB();
 
 	//Pointers to the players pieces
-	std::vector<piece*>* getPlayer1();
-	std::vector<piece*>* getPlayer2();
+	std::vector<piece*>* getPlayerBottom();
+	std::vector<piece*>* getPlayerUp();
 
 	//Pointer to the board
 	Cell* getBoard();
-
-	void render();
-	void update();
 };
 

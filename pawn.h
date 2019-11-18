@@ -12,6 +12,6 @@ public:
 	pawn(Cell* boardPosition, Owner player);
 	~pawn();
 
-	void promote();
+	bool promote();
 };
 

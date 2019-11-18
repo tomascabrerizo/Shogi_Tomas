@@ -19,10 +19,24 @@ pawn::~pawn()
 	position = NULL;
 }
 
-void pawn::promote()
+bool pawn::promote()
 {
-	promoted = true;
-	player == PLAYER_UP ? position->kanji = "+Pv |" : position->kanji = "+P^ |";
+	if (player == PLAYER_UP && position->y >= 6)
+	{
+		promoted = true;
+		position->kanji = "+Pv |";
+		return true;
+	}
+	else if (player == PLAYER_DOWN && position->y <= 2)
+	{
+		promoted = true;
+		position->kanji = "+P^ |";
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool pawn::validPosition(Cell* move, Owner player)

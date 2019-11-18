@@ -10,6 +10,6 @@ public:
 	SilverGeneral(Cell* boardPosition, Owner player);
 	~SilverGeneral();
 
-	void promote();
+	bool promote();
 };
 

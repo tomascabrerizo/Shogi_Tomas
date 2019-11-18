@@ -30,6 +30,7 @@ protected:
 	bool captured;
 	bool promoted;
 	
+	/*Kanji character*/
 	const char* kanjiTop;
 	const char* kanjiBottom;
 
@@ -48,9 +49,10 @@ public:
 	const char* getKanjiTop();
 	const char* getKanjiBottom();
 
-	void setPosition(Cell* boardPosition);
+	bool setPosition(Cell* boardPosition);
 
-	virtual void promote();
+	virtual bool promote();
+	virtual void promote(bool value);
 	Cell* getPosition();
 
 	void setCapture();

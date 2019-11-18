@@ -19,10 +19,24 @@ rook::~rook()
 	position = NULL;
 }
 
-void rook::promote()
+bool rook::promote()
 {
-	promoted = true;
-	player == PLAYER_UP ? position->kanji = "+Rv |" : position->kanji = "+R^ |";
+	if (player == PLAYER_UP && position->y >= 6)
+	{
+		promoted = true;
+		position->kanji = "+Rv |";
+		return true;
+	}
+	else if (player == PLAYER_DOWN && position->y <= 2)
+	{
+		promoted = true;
+		position->kanji = "+R^ |";
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool rook::validPosition(Cell* move, Owner player)

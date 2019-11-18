@@ -10,6 +10,6 @@ public:
 	Knight(Cell* boardPosition, Owner player);
 	~Knight();
 
-	void promote();
+	bool promote();
 };
 

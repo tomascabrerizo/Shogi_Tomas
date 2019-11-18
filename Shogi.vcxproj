@@ -127,6 +127,7 @@
     <ClCompile Include="board.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GoldGeneral.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="king.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Lance.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GoldGeneral.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="king.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="Lance.h" />

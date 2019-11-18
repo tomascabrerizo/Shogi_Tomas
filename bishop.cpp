@@ -21,10 +21,24 @@ bishop::~bishop()
 	position = NULL;
 }
 
-void bishop::promote()
+bool bishop::promote()
 {
-	promoted = true;
-	player == PLAYER_UP ? position->kanji = "+Bv |" : position->kanji = "+B^ |";
+	if (player == PLAYER_UP && position->y >= 6)
+	{
+		promoted = true;
+		position->kanji = "+Bv |";
+		return true;
+	}
+	else if (player == PLAYER_DOWN && position->y <= 2)
+	{
+		promoted = true;
+		position->kanji = "+B^ |";
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool bishop::validPosition(Cell* move, Owner player)
