@@ -10,6 +10,7 @@ piece::piece(Cell* boardPosition, Owner player)
 	this->player = player;
 	captured = false;
 	promoted = false;
+	canPromote = false;
 
 }
 
@@ -37,6 +38,32 @@ bool piece::move(Cell* move)
 			//TODO: simply render the PLAYER_DOWN character
 			position->currentPiece = this;
 			std::cout << name << " Moved" << std::endl;
+			if (player == PLAYER_UP && position->y >= 6 && canPromote)
+			{
+				char answer;
+				std::cout << "You can promote your: " << name << "enter y to promote it" << std::endl;
+				std::cin >> answer;
+				if (answer == 'y')
+				{
+					if (promote())
+					{
+						std::cout << "You " << name << " was promoted" << std::endl;
+					}
+				}
+			}
+			if (player == PLAYER_DOWN && position->y <= 2 && canPromote)
+			{
+				char answer;
+				std::cout << "You can promote your: " << name << "enter y to promote it" << std::endl;
+				std::cin >> answer;
+				if (answer == 'y')
+				{
+					if (promote())
+					{
+						std::cout << "You " << name << " was promoted" << std::endl;
+					}
+				}
+			}
 			return true;
 		}
 		else
@@ -52,6 +79,32 @@ bool piece::move(Cell* move)
 			//TODO: simply render the PLAYER_DOWN character
 			position->currentPiece = this;
 			std::cout << name << " Moved" << std::endl;
+			if (player == PLAYER_UP && position->y >= 6 && canPromote)
+			{
+				char answer;
+				std::cout << "You can promote your: " << name << "enter y to promote it" << std::endl;
+				std::cin >> answer;
+				if (answer == 'y')
+				{
+					if (promote())
+					{
+						std::cout << "You " << name << " was promoted" << std::endl;
+					}
+				}
+			}
+			if (player == PLAYER_DOWN && position->y <= 2 && canPromote)
+			{
+				char answer;
+				std::cout << "You can promote your: " << name << "enter y to promote it" << std::endl;
+				std::cin >> answer;
+				if (answer == 'y')
+				{
+					if (promote())
+					{
+						std::cout << "You " << name << " was promoted" << std::endl;
+					}
+				}
+			}
 			return true;
 		}
 	}

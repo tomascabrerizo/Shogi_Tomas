@@ -13,6 +13,7 @@ Lance::Lance(Cell* boardPosition, Owner player, Cell* fistCellofBoard) : piece(b
 	position->currentPiece = this;
 	name = LANCE;
 	this->fistCellofBoard = fistCellofBoard;
+	canPromote = true;
 }
 
 Lance::~Lance()

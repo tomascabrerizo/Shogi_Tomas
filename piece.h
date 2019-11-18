@@ -28,6 +28,7 @@ protected:
 	Owner player;
 
 	bool captured;
+	bool canPromote;
 	bool promoted;
 	
 	/*Kanji character*/

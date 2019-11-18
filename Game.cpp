@@ -1,14 +1,29 @@
 #include "Game.h"
 
+#ifdef _WIN32
+
+#define Clear() system("CLS");
+
+#endif 
+
+#ifdef __linux__
+
+#define Clear() system("clear");
+
+#endif
+
+#ifdef __APPLE__
+
+#define Clear() system("clear");
+
+#endif 
+
+
 Game::Game()
 {
 	gameRunning = true;
 	/*Initllize Board*/
 	shogi.initBoard();
-	//Promote pawn 4 2 to test movement
-	shogi.getCell(1, 1)->currentPiece->promote();
-	shogi.getCell(8, 0)->currentPiece->promote();
-	shogi.getCell(1, 7)->currentPiece->promote();
 	playerTurn = PLAYER_UP;
 }
 
@@ -23,9 +38,7 @@ void Game::update()
 	/*TURN PLAYER UP*/
 	if (playerTurn == PLAYER_UP)
 	{
-		std::string playerUP = "|-----------------|\n"
-							"|----PLAYER_UP----|\n"
-							"|-----------------|";
+		std::string playerUP = "|-----------------|\n|----PLAYER_UP----|\n|-----------------|";
 		std::cout << playerUP << std::endl;
 		while (!moveSucces)
 		{
@@ -56,14 +69,28 @@ void Game::update()
 					break;
 				case PROMOTE:
 
-					//TODO:Stuff
-					if (shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->promote())
+					if (shogi.getCell(gameInput.getXSource(), gameInput.getYSource())->currentPiece != NULL)
 					{
-						moveSucces = true;
+						if (shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->getPlayer() == PLAYER_UP)
+						{
+							if (shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->promote())
+							{
+								moveSucces = true;
+							}
+							else
+							{
+								std::cout << "Cannot promote this piece yet" << std::endl;
+							}
+
+						}
+						else
+						{
+							std::cout << "This is a enemy piece" << std::endl;
+						}
 					}
 					else
 					{
-						std::cout << "Cannot promote this piece yet" << std::endl;
+						std::cout << "There is no piece in that cell" << std::endl;
 					}
 
 					break;
@@ -90,11 +117,7 @@ void Game::update()
 	else
 	{
 		/*PLAYER BOTTOM*/
-		std::string playerBOTTOM = "|-----------------|\n"
-								"|--PLAYER_BOTTOM--|\n"
-								"|-----------------|";
-											
-
+		std::string playerBOTTOM = "|-----------------|\n|--PLAYER_BOTTOM--|\n|-----------------|";									
 		std::cout << playerBOTTOM << std::endl;
 		while (!moveSucces)
 		{
@@ -125,24 +148,39 @@ void Game::update()
 					break;
 				case PROMOTE:
 
-					if (shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->promote())
+					if (shogi.getCell(gameInput.getXSource(), gameInput.getYSource())->currentPiece != NULL)
 					{
-						moveSucces = true;
+						if (shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->getPlayer() == PLAYER_DOWN)
+						{
+							if (shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->promote())
+							{
+								moveSucces = true;
+							}
+							else
+							{
+								std::cout << "Cannot promote this piece yet" << std::endl;
+							}
+							
+						}
+						else
+						{
+							std::cout << "This is a enemy piece" << std::endl;
+						}
 					}
 					else
 					{
-						std::cout << "Cannot promote this piece yet" << std::endl;
+						std::cout << "There is no piece in that cell" << std::endl;
 					}
 
 					break;
 				case INSERT:
 					for (int i = 0; i < shogi.getPlayerUp()->size(); i++)
 					{
-						if (shogi.getPlayerUp()->at(i)->getPosition() == NULL)
+						if (shogi.getPlayerBottom()->at(i)->getPosition() == NULL)
 						{
 							//TODO: check for piece type and check if the position to set is valid
-							shogi.getPlayerUp()->at(i)->setPosition(&(shogi.getBoard()[gameInput.getXSource() + gameInput.getYSource() * 9]));
-							shogi.getPlayerUp()->at(i)->getPosition()->kanji = shogi.getPlayerUp()->at(i)->getKanjiTop();
+							shogi.getPlayerBottom()->at(i)->setPosition(&(shogi.getBoard()[gameInput.getXSource() + gameInput.getYSource() * 9]));
+							shogi.getPlayerBottom()->at(i)->getPosition()->kanji = shogi.getPlayerBottom()->at(i)->getKanjiBottom();
 							moveSucces = true;
 							break;
 						}
@@ -162,6 +200,10 @@ void Game::update()
 
 void Game::render()
 {
+	Clear();
+	std::cout << "|---------------------------------------|" << std::endl;
+	std::cout << "|---------------TOMAS-SHOGI-------------|" << std::endl;
+	std::cout << "|---------------------------------------|" << std::endl;
 	shogi.render();
 }
 

@@ -12,6 +12,7 @@ rook::rook(Cell* boardPosition, Owner player, Cell* fistCellofBoard) : piece(boa
 	position->currentPiece = this;
 	name = ROOK;
 	this->fistCellofBoard = fistCellofBoard;
+	canPromote = true;
 }
 
 rook::~rook()

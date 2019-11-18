@@ -11,6 +11,7 @@ Knight::Knight(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 	/*Setting Knight to the current board position*/
 	position->currentPiece = this;
 	name = KNIGHT;
+	canPromote = true;
 }
 
 Knight::~Knight()

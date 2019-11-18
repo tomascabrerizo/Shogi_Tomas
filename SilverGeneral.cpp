@@ -11,6 +11,7 @@ SilverGeneral::SilverGeneral(Cell* boardPosition, Owner player) : piece(boardPos
 	/*Setting Silver General to the current board position*/
 	position->currentPiece = this;
 	name = SILVER_GENERAL;
+	canPromote = true;
 }
 
 SilverGeneral::~SilverGeneral()

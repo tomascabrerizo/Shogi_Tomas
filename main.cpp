@@ -3,10 +3,6 @@
 
 int main()
 {
-	std::cout << "|---------------------------------------|" << std::endl;
-	std::cout << "|---------------TOMAS-SHOGI-------------|" << std::endl;
-	std::cout << "|---------------------------------------|" << std::endl;
-
 	Game ShogiGame;
 	bool fistRender = false;
 

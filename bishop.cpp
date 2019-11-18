@@ -14,6 +14,7 @@ bishop::bishop(Cell* boardPosition, Owner player, Cell* fistCellofBoard) : piece
 	position->currentPiece = this;
 	name = BISHOP;
 	this->fistCellofBoard = fistCellofBoard;
+	canPromote = true;
 }
 
 bishop::~bishop()

@@ -196,10 +196,10 @@ void Board::render()
 		}
 	}
 
-	std::cout << "PlayerU: Pawns: " << pC << "| Rooks: " << rC << "| Bishops: " << bC << "| Knights: " << nC
-		<< "| Lancers: " << lC << "| G_Generals: " << ggC << "| S_Generals: " << sgC << "| King: " << kC << std::endl;
-	std::cout << "PlayerU Captured: Pawns: " << npC << "| Rooks: " << nrC << "| Bishops: " << nbC << "| Knights: " << nnC
-		<< "| Lancers: " << nlC << "| G_Generals: " << nggC << "| S_Generals: " << nsgC << "| King: " << nkC << "\n" << std::endl;
+	std::cout << "PlayerU:          P: " << pC << "| R: " << rC << "| B: " << bC << "| K: " << nC
+		<< "| L: " << lC << "| G_G: " << ggC << "| S_G: " << sgC << "| K: " << kC << std::endl;
+	std::cout << "PlayerU Captured: P: " << npC << "| R: " << nrC << "| B: " << nbC << "| K: " << nnC
+		<< "| L: " << nlC << "| G_G: " << nggC << "| S_G: " << nsgC << "| K: " << nkC << "\n" << std::endl;
 
 
 	/*PLAYER BOTTOM*/
@@ -251,10 +251,10 @@ void Board::render()
 		}
 	}
 
-	std::cout << "PlayerB: Pawns: " << pC << "| Rooks: " << rC << "| Bishops: " << bC << "| Knights: " << nC
-		<< "| Lancers: " << lC << "| G_Generals: " << ggC << "| S_Generals: " << sgC << "| King: " << kC << std::endl;
-	std::cout << "PlayerB Captured: Pawns: " << npC << "| Rooks: " << nrC << "| Bishops: " << nbC << "| Knights: " << nnC
-		<< "| Lancers: " << nlC << "| G_Generals: " << nggC << "| S_Generals: " << nsgC << "| King: " << nkC << std::endl;
+	std::cout << "PlayerB:          P: " << pC << "| R: " << rC << "| B: " << bC << "| K: " << nC
+		<< "| L: " << lC << "| G_G: " << ggC << "| S_G: " << sgC << "| K: " << kC << std::endl;
+	std::cout << "PlayerB Captured: P: " << npC << "| R: " << nrC << "| B: " << nbC << "| K: " << nnC
+		<< "| L: " << nlC << "| G_G: " << nggC << "| S_G: " << nsgC << "| K: " << nkC << std::endl;
 }
 
 piece* Board::getPiece(int x, int y)
