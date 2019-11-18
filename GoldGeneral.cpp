@@ -11,6 +11,7 @@ GoldGeneral::GoldGeneral(Cell* boardPosition, Owner player) : piece(boardPositio
 	/*Setting Gold General to the current board position*/
 	position->currentPiece = this;
 	name = GOLDEN_GENERAL;
+	id = 'g';
 }
 
 GoldGeneral::~GoldGeneral()

@@ -10,6 +10,7 @@ king::king(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	position->currentPiece = this;
 	name = KING;
+	id = 'k';
 }
 
 king::~king()

@@ -36,6 +36,7 @@ protected:
 	const char* kanjiBottom;
 
 	const char* name;
+	char id;
 	virtual bool validPosition(Cell* move, Owner player) = 0;
 
 public:
@@ -49,6 +50,8 @@ public:
 	/*Getters and Setters*/
 	const char* getKanjiTop();
 	const char* getKanjiBottom();
+
+	char getId();
 
 	bool setPosition(Cell* boardPosition);
 

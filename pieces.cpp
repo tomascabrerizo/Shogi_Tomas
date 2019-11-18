@@ -126,6 +126,11 @@ const char* piece::getKanjiBottom()
 	return kanjiBottom;
 }
 
+char piece::getId()
+{
+	return id;
+}
+
 piece::~piece()
 {
 	position = NULL;
@@ -145,8 +150,8 @@ bool piece::setPosition(Cell* boardPosition)
 
 bool piece::promote()
 {
-	promoted = true;
-	return true;
+	std::cout << "this pieces cannot promote" << std::endl;
+	return false;
 }
 
 void piece::promote(bool value)

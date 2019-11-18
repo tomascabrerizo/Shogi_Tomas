@@ -98,6 +98,15 @@ bool Input::checkForCommand()
 			return true;
 		}
 	}
+	else if (commandName == "end")
+	{
+		if (command.size() == 5 &&
+			(command[nameSize + 1] == ')'))
+		{
+			commandType = END;
+			return true;
+		}
+	}
 
 	std::cout << "Command not found" << std::endl;
 	return false;

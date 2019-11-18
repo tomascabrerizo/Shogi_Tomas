@@ -97,7 +97,8 @@ void Game::update()
 				case INSERT:
 					for (int i = 0; i < shogi.getPlayerUp()->size(); i++)
 					{
-						if (shogi.getPlayerUp()->at(i)->getPosition() == NULL)
+						if (shogi.getPlayerUp()->at(i)->getPosition() == NULL && 
+							shogi.getPlayerUp()->at(i)->getId() == gameInput.getPieceType())
 						{
 							//TODO: check for piece type and check if the position to set is valid
 							shogi.getPlayerUp()->at(i)->setPosition(&(shogi.getBoard()[gameInput.getXSource() + gameInput.getYSource() * 9]));
@@ -106,6 +107,10 @@ void Game::update()
 							break;
 						}
 					}
+					break;
+				case END:
+					gameRunning = false;
+					moveSucces = true;
 					break;
 				default:
 					break;
@@ -174,9 +179,10 @@ void Game::update()
 
 					break;
 				case INSERT:
-					for (int i = 0; i < shogi.getPlayerUp()->size(); i++)
+					for (int i = 0; i < shogi.getPlayerBottom()->size(); i++)
 					{
-						if (shogi.getPlayerBottom()->at(i)->getPosition() == NULL)
+						if (shogi.getPlayerBottom()->at(i)->getPosition() == NULL &&
+							shogi.getPlayerBottom()->at(i)->getId() == gameInput.getPieceType())
 						{
 							//TODO: check for piece type and check if the position to set is valid
 							shogi.getPlayerBottom()->at(i)->setPosition(&(shogi.getBoard()[gameInput.getXSource() + gameInput.getYSource() * 9]));
@@ -185,6 +191,10 @@ void Game::update()
 							break;
 						}
 					}
+					break;
+				case END:
+					gameRunning = false;
+					moveSucces = true;
 					break;
 				default:
 					break;

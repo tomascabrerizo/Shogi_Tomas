@@ -12,6 +12,7 @@ pawn::pawn(Cell* boardPosition, Owner player) : piece(boardPosition, player)
 	/*Setting rook to the current board position*/
 	position->currentPiece = this;
 	name = PAWN;
+	id = 'p';
 	canPromote = true;
 }
 
