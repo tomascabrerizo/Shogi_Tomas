@@ -1,8 +1,6 @@
-﻿  Game.cpp
-D:\Dev\Shogi\Shogi\Game.cpp(100,24): warning C4018: '<': no coinciden signed/unsigned
-D:\Dev\Shogi\Shogi\Game.cpp(122,21): warning C4018: '<': no coinciden signed/unsigned
-D:\Dev\Shogi\Shogi\Game.cpp(131,21): warning C4018: '<': no coinciden signed/unsigned
-D:\Dev\Shogi\Shogi\Game.cpp(207,24): warning C4018: '<': no coinciden signed/unsigned
-D:\Dev\Shogi\Shogi\Game.cpp(229,21): warning C4018: '<': no coinciden signed/unsigned
-D:\Dev\Shogi\Shogi\Game.cpp(238,21): warning C4018: '<': no coinciden signed/unsigned
+﻿  board.cpp
+D:\Dev\Shogi\Shogi\board.cpp(115,20): warning C4018: '<': no coinciden signed/unsigned
+D:\Dev\Shogi\Shogi\board.cpp(129,20): warning C4018: '<': no coinciden signed/unsigned
+D:\Dev\Shogi\Shogi\board.cpp(182,20): warning C4018: '<': no coinciden signed/unsigned
+D:\Dev\Shogi\Shogi\board.cpp(237,20): warning C4018: '<': no coinciden signed/unsigned
   Shogi.vcxproj -> D:\Dev\Shogi\Debug\Shogi.exe

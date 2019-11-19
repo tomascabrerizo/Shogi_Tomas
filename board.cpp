@@ -38,19 +38,18 @@ void Board::initBoard()
 	/*initialized player pieces positions on the board*/
 	/**************************************************/
 	/*Allocate the pieces on the heap to achive polymorphism*/
-
+/*
 	playerUp.push_back(new king(&board[4 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 	playerUp.push_back(new pawn(&board[0 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 	playerUp.push_back(new pawn(&board[8 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 
 	playerBottom.push_back(new GoldGeneral(&board[4 + 2 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
 	playerBottom.push_back(new pawn(&board[4 + 3 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+*/
 	
-
-/*
 	//player1 and player2 kings;
 	playerBottom.push_back(new king(&board[4 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerUp.push_back(new king(&board[4 + 4 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerUp.push_back(new king(&board[4 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 
 	//player1 and player2 rook;
 	playerBottom.push_back(new rook(&board[7 + 7 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
@@ -90,7 +89,6 @@ void Board::initBoard()
 	playerBottom.push_back(new Lance(&board[8 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
 	playerUp.push_back(new Lance(&board[0 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 	playerUp.push_back(new Lance(&board[8 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
-*/
 
 	for (piece* tmp : playerBottom)
 	{
