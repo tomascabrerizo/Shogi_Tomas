@@ -9,7 +9,7 @@ bishop::bishop(Cell* boardPosition, Owner player, Cell* firstCellofBoard) : piec
 	kanjiBottom = " B^ |";
 	kanjiTop = " Bv |";
 
-	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
+	player == PLAYER_TOP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	/*Setting bishop to the current board position*/
 	position->currentPiece = this;
 	name = BISHOP;
@@ -24,13 +24,13 @@ bishop::~bishop()
 
 bool bishop::promote()
 {
-	if (player == PLAYER_UP && position->y >= 6)
+	if (player == PLAYER_TOP && position->y >= 6)
 	{
 		promoted = true;
 		position->kanji = "+Bv |";
 		return true;
 	}
-	else if (player == PLAYER_DOWN && position->y <= 2)
+	else if (player == PLAYER_BOTTOM && position->y <= 2)
 	{
 		promoted = true;
 		position->kanji = "+B^ |";

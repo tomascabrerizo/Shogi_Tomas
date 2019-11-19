@@ -7,7 +7,7 @@ rook::rook(Cell* boardPosition, Owner player, Cell* firstCellofBoard) : piece(bo
 	kanjiBottom = " R^ |";
 	kanjiTop = " Rv |";
 
-	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
+	player == PLAYER_TOP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	/*Setting rook to the current board position*/
 	position->currentPiece = this;
 	name = ROOK;
@@ -22,13 +22,13 @@ rook::~rook()
 
 bool rook::promote()
 {
-	if (player == PLAYER_UP && position->y >= 6)
+	if (player == PLAYER_TOP && position->y >= 6)
 	{
 		promoted = true;
 		position->kanji = "+Rv |";
 		return true;
 	}
-	else if (player == PLAYER_DOWN && position->y <= 2)
+	else if (player == PLAYER_BOTTOM && position->y <= 2)
 	{
 		promoted = true;
 		position->kanji = "+R^ |";

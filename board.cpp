@@ -15,7 +15,7 @@ Board::Board()
 	}
 	
 	reInsertPB = false;
-	reInsertPU = false;
+	reInsertPT = false;
 }
 
 Board::~Board()
@@ -25,7 +25,7 @@ Board::~Board()
 	{
 		delete tmp;
 	}
-	for (piece* tmp : playerUp)
+	for (piece* tmp : playerTop)
 	{
 		delete tmp;
 	}
@@ -38,69 +38,77 @@ void Board::initBoard()
 	/*initialized player pieces positions on the board*/
 	/**************************************************/
 	/*Allocate the pieces on the heap to achive polymorphism*/
-/*
-	playerUp.push_back(new king(&board[4 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
-	playerUp.push_back(new pawn(&board[0 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
-	playerUp.push_back(new pawn(&board[8 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 
-	playerBottom.push_back(new GoldGeneral(&board[4 + 2 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerBottom.push_back(new pawn(&board[4 + 3 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-*/
 	
+	
+	//CHECK MATE TEST
+
+	playerTop.push_back(new king(&board[0 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
+	playerTop.push_back(new rook(&board[1 + 1 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
+	//playerTop.push_back(new pawn(&board[8 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
+
+	playerBottom.push_back(new rook(&board[0 + 2 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	//playerBottom.push_back(new pawn(&board[4 + 3 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	
+	
+	/*
 	//player1 and player2 kings;
-	playerBottom.push_back(new king(&board[4 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerUp.push_back(new king(&board[4 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerBottom.push_back(new king(&board[4 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerTop.push_back(new king(&board[4 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 
 	//player1 and player2 rook;
-	playerBottom.push_back(new rook(&board[7 + 7 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerUp.push_back(new rook(&board[1 + 1 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerBottom.push_back(new rook(&board[7 + 7 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerTop.push_back(new rook(&board[1 + 1 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 
 	//Player1 and player2 pawns
 	for (int i = 0; i < 9; i++)
 	{
-		playerBottom.push_back(new pawn(&board[i + 6 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-		playerUp.push_back(new pawn(&board[i + 2 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+		playerBottom.push_back(new pawn(&board[i + 6 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+		playerTop.push_back(new pawn(&board[i + 2 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 	}
 
 	//Player1 and player2 bishop
-	playerBottom.push_back(new bishop(&board[1 + 7 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerUp.push_back(new bishop(&board[7 + 1 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerBottom.push_back(new bishop(&board[1 + 7 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerTop.push_back(new bishop(&board[7 + 1 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 
 	//Player1 and Player 2 Gold Generlars
-	playerBottom.push_back(new GoldGeneral(&board[3 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerBottom.push_back(new GoldGeneral(&board[5 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerUp.push_back(new GoldGeneral(&board[3 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
-	playerUp.push_back(new GoldGeneral(&board[5 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerBottom.push_back(new GoldGeneral(&board[3 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerBottom.push_back(new GoldGeneral(&board[5 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerTop.push_back(new GoldGeneral(&board[3 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
+	playerTop.push_back(new GoldGeneral(&board[5 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 
 	//Player1 and Player 2 Silver Generlars
-	playerBottom.push_back(new SilverGeneral(&board[2 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerBottom.push_back(new SilverGeneral(&board[6 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerUp.push_back(new SilverGeneral(&board[2 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
-	playerUp.push_back(new SilverGeneral(&board[6 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerBottom.push_back(new SilverGeneral(&board[2 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerBottom.push_back(new SilverGeneral(&board[6 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerTop.push_back(new SilverGeneral(&board[2 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
+	playerTop.push_back(new SilverGeneral(&board[6 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 
 	//Player1 and Player2 knights
-	playerBottom.push_back(new Knight(&board[1 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerBottom.push_back(new Knight(&board[7 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerUp.push_back(new Knight(&board[1 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
-	playerUp.push_back(new Knight(&board[7 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerBottom.push_back(new Knight(&board[1 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerBottom.push_back(new Knight(&board[7 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerTop.push_back(new Knight(&board[1 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
+	playerTop.push_back(new Knight(&board[7 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 
 	//Player1 and Player2 Lancers
-	playerBottom.push_back(new Lance(&board[0 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerBottom.push_back(new Lance(&board[8 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
-	playerUp.push_back(new Lance(&board[0 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
-	playerUp.push_back(new Lance(&board[8 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerBottom.push_back(new Lance(&board[0 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerBottom.push_back(new Lance(&board[8 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerTop.push_back(new Lance(&board[0 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
+	playerTop.push_back(new Lance(&board[8 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 
+	*/
+
+	/*Init all the pieces valid positions and the king enemy positions*/
 	for (piece* tmp : playerBottom)
 	{
-		tmp->initValidCell(PLAYER_DOWN);
+		tmp->updateValidCell(PLAYER_BOTTOM);
 		if (tmp->getName() == KING)
 		{
 			static_cast<king*>(tmp)->updateEnemyPosition();
 		}
 	}
-	for (piece* tmp : playerUp)
+	for (piece* tmp : playerTop)
 	{
-		tmp->initValidCell(PLAYER_UP);
+		tmp->updateValidCell(PLAYER_TOP);
 		if (tmp->getName() == KING)
 		{
 			static_cast<king*>(tmp)->updateEnemyPosition();
@@ -120,23 +128,23 @@ bool Board::update()
 		if (playerBottom[i]->isCapture())
 		{
 			playerBottom[i]->setCapture(false);
-			playerUp.push_back(playerBottom[i]);
+			playerTop.push_back(playerBottom[i]);
 			std::cout << "One " << playerBottom[i]->getName() << " change side " << std::endl;
 			playerBottom.erase(playerBottom.begin()+i);
 		}
 	}
 	/*Check for new captured pieces, if one piece is capture change sides*/
-	for (int i = 0; i < playerUp.size(); i++)
+	for (int i = 0; i < playerTop.size(); i++)
 	{
 		/*Check if there are any pieces outside the board*/
-		playerUp[i]->getPosition() == NULL ? reInsertPU = true : reInsertPU = false;
+		playerTop[i]->getPosition() == NULL ? reInsertPT = true : reInsertPT = false;
 
-		if (playerUp[i]->isCapture())
+		if (playerTop[i]->isCapture())
 		{
-			playerUp[i]->setCapture(false);
-			playerBottom.push_back(playerUp[i]);
-			std::cout << "One " << playerUp[i]->getName() << " change side " << std::endl;
-			playerUp.erase(playerUp.begin() + i);
+			playerTop[i]->setCapture(false);
+			playerBottom.push_back(playerTop[i]);
+			std::cout << "One " << playerTop[i]->getName() << " change side " << std::endl;
+			playerTop.erase(playerTop.begin() + i);
 		}	
 	}
 	return true;
@@ -179,53 +187,53 @@ void Board::render()
 	/*Not inssert pieces*/
 	int npC = 0, nrC = 0, nbC = 0, nnC = 0, nkC = 0, nsgC = 0, nggC = 0, nlC = 0;
 
-	for (int i = 0; i < playerUp.size(); i++)
+	for (int i = 0; i < playerTop.size(); i++)
 	{
-		if (playerUp[i]->getName() == PAWN)
+		if (playerTop[i]->getName() == PAWN)
 		{
 			pC++;
-			if (playerUp[i]->getPosition() == NULL) npC++;
+			if (playerTop[i]->getPosition() == NULL) npC++;
 		}
-		if (playerUp[i]->getName() == ROOK)
+		if (playerTop[i]->getName() == ROOK)
 		{
 			rC++;
-			if (playerUp[i]->getPosition() == NULL) nrC++;
+			if (playerTop[i]->getPosition() == NULL) nrC++;
 		}
-		if (playerUp[i]->getName() == BISHOP)
+		if (playerTop[i]->getName() == BISHOP)
 		{
 			bC++;
-			if (playerUp[i]->getPosition() == NULL) nbC++;
+			if (playerTop[i]->getPosition() == NULL) nbC++;
 		}
-		if (playerUp[i]->getName() == KNIGHT)
+		if (playerTop[i]->getName() == KNIGHT)
 		{
 			nC++;
-			if (playerUp[i]->getPosition() == NULL) nnC++;
+			if (playerTop[i]->getPosition() == NULL) nnC++;
 		}
-		if (playerUp[i]->getName() == LANCE)
+		if (playerTop[i]->getName() == LANCE)
 		{
 			lC++;
-			if (playerUp[i]->getPosition() == NULL) nlC++;
+			if (playerTop[i]->getPosition() == NULL) nlC++;
 		}
-		if (playerUp[i]->getName() == SILVER_GENERAL)
+		if (playerTop[i]->getName() == SILVER_GENERAL)
 		{
 			sgC++;
-			if (playerUp[i]->getPosition() == NULL) nsgC++;
+			if (playerTop[i]->getPosition() == NULL) nsgC++;
 		}
-		if (playerUp[i]->getName() == GOLDEN_GENERAL)
+		if (playerTop[i]->getName() == GOLDEN_GENERAL)
 		{
 			ggC++;
-			if (playerUp[i]->getPosition() == NULL) nggC++;
+			if (playerTop[i]->getPosition() == NULL) nggC++;
 		}
-		if (playerUp[i]->getName() == KING)
+		if (playerTop[i]->getName() == KING)
 		{
 			kC++;
-			if (playerUp[i]->getPosition() == NULL) nkC++;
+			if (playerTop[i]->getPosition() == NULL) nkC++;
 		}
 	}
 
-	std::cout << "PlayerU:          P: " << pC << "| R: " << rC << "| B: " << bC << "| K: " << nC
+	std::cout << "PlayerT:          P: " << pC << "| R: " << rC << "| B: " << bC << "| K: " << nC
 		<< "| L: " << lC << "| G_G: " << ggC << "| S_G: " << sgC << "| K: " << kC << std::endl;
-	std::cout << "PlayerU Captured: P: " << npC << "| R: " << nrC << "| B: " << nbC << "| K: " << nnC
+	std::cout << "PlayerT Captured: P: " << npC << "| R: " << nrC << "| B: " << nbC << "| K: " << nnC
 		<< "| L: " << nlC << "| G_G: " << nggC << "| S_G: " << nsgC << "| K: " << nkC << "\n" << std::endl;
 
 
@@ -294,9 +302,9 @@ Cell* Board::getCell(int x, int y)
 	return &board[x + y * 9];
 }
 
-bool Board::getReInsertPU()
+bool Board::getReInsertPT()
 {
-	return reInsertPU;
+	return reInsertPT;
 }
 
 bool Board::getReInsertPB()
@@ -309,9 +317,9 @@ std::vector<piece*>* Board::getPlayerBottom()
 	return &playerBottom;
 }
 
-std::vector<piece*>* Board::getPlayerUp()
+std::vector<piece*>* Board::getPlayerTop()
 {
-	return &playerUp;
+	return &playerTop;
 }
 
 Cell* Board::getBoard()

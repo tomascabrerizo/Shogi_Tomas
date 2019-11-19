@@ -7,7 +7,7 @@ GoldGeneral::GoldGeneral(Cell* boardPosition, Owner player, Cell* firstCellofBoa
 	kanjiBottom = " G^ |";
 	kanjiTop = " Gv |";
 
-	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
+	player == PLAYER_TOP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	/*Setting Gold General to the current board position*/
 	position->currentPiece = this;
 	name = GOLDEN_GENERAL;
@@ -28,7 +28,7 @@ bool GoldGeneral::validPosition(Cell* move, Owner player)
 	//		return false;
 	//	}
 	//}
-	if (player == PLAYER_DOWN)
+	if (player == PLAYER_BOTTOM)
 	{
 		if (((position->y == (move->y + 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
 			((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||
@@ -37,7 +37,7 @@ bool GoldGeneral::validPosition(Cell* move, Owner player)
 			return true;
 		}
 	}
-	else if (player == PLAYER_UP)
+	else if (player == PLAYER_TOP)
 	{
 		if (((position->y == (move->y - 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
 			((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||

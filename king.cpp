@@ -7,10 +7,11 @@ king::king(Cell* boardPosition, Owner player, Cell* firstCellofBoard) : piece(bo
 	kanjiBottom = " K^ |";
 	kanjiTop = " Kv |";
 
-	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
+	player == PLAYER_TOP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	position->currentPiece = this;
 	name = KING;
 	id = 'k';
+	this->InCheck = false;
 }
 
 king::~king()
@@ -31,7 +32,7 @@ void king::updateEnemyPosition()
 				if (firstCellofBoard[x + y * 9].currentPiece->getPlayer() != player)
 				{
 					Owner tmpOwner;
-					player == PLAYER_DOWN ? tmpOwner = PLAYER_UP : tmpOwner = PLAYER_DOWN;
+					player == PLAYER_BOTTOM ? tmpOwner = PLAYER_TOP : tmpOwner = PLAYER_BOTTOM;
 					piece* tmpPiece = firstCellofBoard[x + y * 9].currentPiece;
 
 					for (Cell tmpCell : tmpPiece->validCell(tmpOwner))
@@ -42,6 +43,22 @@ void king::updateEnemyPosition()
 			}
 		}
 	}
+}
+
+bool king::isInCheck()
+{
+	updateEnemyPosition();
+	for (int i = 0; i < enemiesPositions.size(); i++)
+	{
+		if (position->x == enemiesPositions[i].x &&
+			position->y == enemiesPositions[i].y)
+		{
+			this->InCheck = true;
+			return InCheck;
+		}
+	}
+	this->InCheck = false;
+	return InCheck;
 }
 
 bool king::validPosition(Cell* move, Owner player)
@@ -64,7 +81,6 @@ bool king::validPosition(Cell* move, Owner player)
 				move->y == enemiesPositions[j].y)
 			{
 				validPos = false;
-				std::cout << "The King cannot check him self!" << std::endl;
 				break;
 			}
 		}
@@ -77,7 +93,6 @@ bool king::validPosition(Cell* move, Owner player)
 
 bool king::isInCheckMate()
 {
-	validCell(player);
 	enemiesPositions.clear();
 	/*Array with all the enemy valid positions to check with the king positions*/
 	for (int y = 0; y < 9; y++)
@@ -89,9 +104,9 @@ bool king::isInCheckMate()
 				if (firstCellofBoard[x + y * 9].currentPiece->getPlayer() != player)
 				{
 					Owner tmpOwner;
-						player == PLAYER_DOWN ? tmpOwner = PLAYER_UP : tmpOwner = PLAYER_DOWN;
+						player == PLAYER_BOTTOM ? tmpOwner = PLAYER_TOP : tmpOwner = PLAYER_BOTTOM;
 						piece* tmpPiece = firstCellofBoard[x + y * 9].currentPiece;
-
+						/*Update all enemies valid position*/
 						for (Cell tmpCell : tmpPiece->validCell(tmpOwner))
 						{
 							enemiesPositions.push_back(tmpCell);
@@ -100,6 +115,10 @@ bool king::isInCheckMate()
 			}
 		}
 	}
+
+	/*Update the king valid positions with the update enemies valid positions*/
+	updateValidCell(player);
+
 	int positionFlagSize = validPositions.size();
 	bool* positionsFlag = new bool[positionFlagSize];
 	//Set all the flags to false

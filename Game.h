@@ -12,7 +12,7 @@ private:
 	Board shogi;
 	int checkedNumber(const char* message);
 	Owner playerTurn;
-	bool playerUpWins, playerBottomWins;
+	bool playerTopWins, playerBottomWins;
 
 public:
 	/*Constructor and Destructor*/

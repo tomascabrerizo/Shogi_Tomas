@@ -16,8 +16,8 @@ struct Cell;
 
 enum Owner
 {
-	PLAYER_UP,
-	PLAYER_DOWN
+	PLAYER_TOP,
+	PLAYER_BOTTOM
 };
 
 class piece
@@ -73,7 +73,7 @@ public:
 	const char* getName();
 
 	virtual bool validPosition(Cell* move, Owner player) = 0;
-	void initValidCell(Owner player);
+	void updateValidCell(Owner player);
 	std::vector<Cell> validCell(Owner player);
 };
 

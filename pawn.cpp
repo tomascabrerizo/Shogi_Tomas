@@ -7,7 +7,7 @@ pawn::pawn(Cell* boardPosition, Owner player, Cell* firstCellofBoard) : piece(bo
 	kanjiBottom = " P^ |";
 	kanjiTop = " Pv |";
 	
-	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
+	player == PLAYER_TOP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 
 	/*Setting rook to the current board position*/
 	position->currentPiece = this;
@@ -23,13 +23,13 @@ pawn::~pawn()
 
 bool pawn::promote()
 {
-	if (player == PLAYER_UP && position->y >= 6)
+	if (player == PLAYER_TOP && position->y >= 6)
 	{
 		promoted = true;
 		position->kanji = "+Pv |";
 		return true;
 	}
-	else if (player == PLAYER_DOWN && position->y <= 2)
+	else if (player == PLAYER_BOTTOM && position->y <= 2)
 	{
 		promoted = true;
 		position->kanji = "+P^ |";
@@ -52,7 +52,7 @@ bool pawn::validPosition(Cell* move, Owner player)
 	//}
 	if (!promoted)
 	{
-		if (player == PLAYER_DOWN)
+		if (player == PLAYER_BOTTOM)
 		{
 			if ((position->x == move->x) && (position->y == (move->y + 1)))
 			{
@@ -60,7 +60,7 @@ bool pawn::validPosition(Cell* move, Owner player)
 				return true;
 			}
 		}
-		else if ((player == PLAYER_UP))
+		else if ((player == PLAYER_TOP))
 		{
 			if ((position->x == move->x) && (position->y == (move->y - 1)))
 			{
@@ -70,7 +70,7 @@ bool pawn::validPosition(Cell* move, Owner player)
 	}
 	else /*If the pawn promote, its moves like gold general*/
 	{
-		if (player == PLAYER_DOWN)
+		if (player == PLAYER_BOTTOM)
 		{
 			if (((position->y == (move->y + 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
 				((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||
@@ -79,7 +79,7 @@ bool pawn::validPosition(Cell* move, Owner player)
 				return true;
 			}
 		}
-		else if (player == PLAYER_UP)
+		else if (player == PLAYER_TOP)
 		{
 			if (((position->y == (move->y - 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
 				((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||

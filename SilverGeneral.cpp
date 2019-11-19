@@ -7,7 +7,7 @@ SilverGeneral::SilverGeneral(Cell* boardPosition, Owner player, Cell* firstCello
 	kanjiBottom = " S^ |";
 	kanjiTop = " Sv |";
 
-	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
+	player == PLAYER_TOP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	/*Setting Silver General to the current board position*/
 	position->currentPiece = this;
 	name = SILVER_GENERAL;
@@ -22,13 +22,13 @@ SilverGeneral::~SilverGeneral()
 
 bool SilverGeneral::promote()
 {
-	if (player == PLAYER_UP && position->y >= 6)
+	if (player == PLAYER_TOP && position->y >= 6)
 	{
 		promoted = true;
 		position->kanji = "+Sv |";
 		return true;
 	}
-	else if (player == PLAYER_DOWN && position->y <= 2)
+	else if (player == PLAYER_BOTTOM && position->y <= 2)
 	{
 		promoted = true;
 		position->kanji = "+S^ |";
@@ -51,7 +51,7 @@ bool SilverGeneral::validPosition(Cell* move, Owner player)
 	//}
 	if (!promoted)
 	{
-		if (player == PLAYER_DOWN)
+		if (player == PLAYER_BOTTOM)
 		{
 			if (((position->y == (move->y + 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
 				((position->y == move->y - 1) && ((position->x == move->x - 1) || (position->x == move->x + 1))))
@@ -59,7 +59,7 @@ bool SilverGeneral::validPosition(Cell* move, Owner player)
 				return true;
 			}
 		}
-		else if (player == PLAYER_UP)
+		else if (player == PLAYER_TOP)
 		{
 			if (((position->y == (move->y - 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
 				((position->y == move->y + 1) && ((position->x == move->x - 1) || (position->x == move->x + 1))))
@@ -70,7 +70,7 @@ bool SilverGeneral::validPosition(Cell* move, Owner player)
 	}
 	else /*If the Silver General promote, its moves like gold general*/
 	{
-		if (player == PLAYER_DOWN)
+		if (player == PLAYER_BOTTOM)
 		{
 			if (((position->y == (move->y + 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
 				((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||
@@ -79,7 +79,7 @@ bool SilverGeneral::validPosition(Cell* move, Owner player)
 				return true;
 			}
 		}
-		else if (player == PLAYER_UP)
+		else if (player == PLAYER_TOP)
 		{
 			if (((position->y == (move->y - 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
 				((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||

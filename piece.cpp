@@ -38,7 +38,7 @@ bool piece::move(Cell* move)
 			//TODO: simply render the PLAYER_DOWN character
 			position->currentPiece = this;
 			std::cout << name << " Moved" << std::endl;
-			if (player == PLAYER_UP && position->y >= 6 && canPromote)
+			if (player == PLAYER_TOP && position->y >= 6 && canPromote)
 			{
 				char answer;
 				std::cout << "You can promote your: " << name << "enter y to promote it" << std::endl;
@@ -51,7 +51,7 @@ bool piece::move(Cell* move)
 					}
 				}
 			}
-			if (player == PLAYER_DOWN && position->y <= 2 && canPromote)
+			if (player == PLAYER_BOTTOM && position->y <= 2 && canPromote)
 			{
 				char answer;
 				std::cout << "You can promote your: " << name << "enter y to promote it" << std::endl;
@@ -79,7 +79,7 @@ bool piece::move(Cell* move)
 			//TODO: simply render the PLAYER_DOWN character
 			position->currentPiece = this;
 			std::cout << name << " Moved" << std::endl;
-			if (player == PLAYER_UP && position->y >= 6 && canPromote)
+			if (player == PLAYER_TOP && position->y >= 6 && canPromote)
 			{
 				char answer;
 				std::cout << "You can promote your: " << name << "enter y to promote it" << std::endl;
@@ -92,7 +92,7 @@ bool piece::move(Cell* move)
 					}
 				}
 			}
-			if (player == PLAYER_DOWN && position->y <= 2 && canPromote)
+			if (player == PLAYER_BOTTOM && position->y <= 2 && canPromote)
 			{
 				char answer;
 				std::cout << "You can promote your: " << name << "enter y to promote it" << std::endl;
@@ -167,13 +167,13 @@ void piece::setCapture()
 	/*Set promote to false*/
 	promote(false);
 	/*Change piece owner*/
-	if (this->player == PLAYER_DOWN) this->player = PLAYER_UP;
-	else if (this->player == PLAYER_UP) this->player = PLAYER_DOWN;
+	if (this->player == PLAYER_BOTTOM) this->player = PLAYER_TOP;
+	else if (this->player == PLAYER_TOP) this->player = PLAYER_BOTTOM;
 	/*Set Captured*/
 	captured = true;
 }
 
-void piece::initValidCell(Owner player)
+void piece::updateValidCell(Owner player)
 {
 	validPositions.clear();
 	for (int y = 0; y < 9; y++)

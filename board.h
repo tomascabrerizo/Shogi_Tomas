@@ -19,13 +19,12 @@ private:
 	Cell board[9 * 9];
 
 	//Array of pointer to players pieces
-	
 	/*Bottom Player*/
 	std::vector<piece*> playerBottom;
 	/*Top player*/
-	std::vector<piece*> playerUp;
+	std::vector<piece*> playerTop;
 
-	bool reInsertPU, reInsertPB;
+	bool reInsertPT, reInsertPB;
 
 public:
 	/*Constructor and destructor*/
@@ -40,12 +39,12 @@ public:
 
 	piece* getPiece(int x, int y);
 	Cell* getCell(int x, int y);
-	bool getReInsertPU();
+	bool getReInsertPT();
 	bool getReInsertPB();
 
 	//Pointers to the players pieces
 	std::vector<piece*>* getPlayerBottom();
-	std::vector<piece*>* getPlayerUp();
+	std::vector<piece*>* getPlayerTop();
 
 	//Pointer to the board
 	Cell* getBoard();

@@ -7,7 +7,7 @@ Knight::Knight(Cell* boardPosition, Owner player, Cell* firstCellofBoard) : piec
 	kanjiBottom = " N^ |";
 	kanjiTop = " Nv |";
 
-	player == PLAYER_UP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
+	player == PLAYER_TOP ? position->kanji = kanjiTop : position->kanji = kanjiBottom;
 	/*Setting Knight to the current board position*/
 	position->currentPiece = this;
 	name = KNIGHT;
@@ -22,13 +22,13 @@ Knight::~Knight()
 
 bool Knight::promote()
 {
-	if (player == PLAYER_UP && position->y >= 6)
+	if (player == PLAYER_TOP && position->y >= 6)
 	{
 		promoted = true;
 		position->kanji = "+Nv |";
 		return true;
 	}
-	else if (player == PLAYER_DOWN && position->y <= 2)
+	else if (player == PLAYER_BOTTOM && position->y <= 2)
 	{
 		promoted = true;
 		position->kanji = "+N^ |";
@@ -51,14 +51,14 @@ bool Knight::validPosition(Cell* move, Owner player)
 	//}
 	if (!promoted)
 	{
-		if (player == PLAYER_DOWN)
+		if (player == PLAYER_BOTTOM)
 		{
 			if ((position->y == move->y + 2) && ((position->x == move->x - 1) || (position->x == move->x + 1)))
 			{
 				return true;
 			}
 		}
-		else if (player == PLAYER_UP)
+		else if (player == PLAYER_TOP)
 		{
 			if ((position->y == move->y - 2) && ((position->x == move->x - 1) || (position->x == move->x + 1)))
 			{
@@ -68,7 +68,7 @@ bool Knight::validPosition(Cell* move, Owner player)
 	}
 	else /*If the knight promote, its moves like gold general*/
 	{
-		if (player == PLAYER_DOWN)
+		if (player == PLAYER_BOTTOM)
 		{
 			if (((position->y == (move->y + 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
 				((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||
@@ -77,7 +77,7 @@ bool Knight::validPosition(Cell* move, Owner player)
 				return true;
 			}
 		}
-		else if (player == PLAYER_UP)
+		else if (player == PLAYER_TOP)
 		{
 			if (((position->y == (move->y - 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||
 				((position->y == move->y) && ((position->x == move->x - 1) || (position->x == move->x + 1))) ||
