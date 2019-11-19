@@ -7,7 +7,7 @@ private:
 
 public:
 	/*Constructor and destructor*/
-	GoldGeneral(Cell* boardPosition, Owner player);
+	GoldGeneral(Cell* boardPosition, Owner player, Cell* firstCellofBoard);
 	~GoldGeneral();
 };
 

@@ -27,9 +27,6 @@
     <ClCompile Include="rook.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="pieces.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="pawn.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -52,6 +49,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="piece.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

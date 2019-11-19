@@ -7,7 +7,7 @@ private:
 	bool validPosition(Cell* move, Owner player);
 public:
 	/*Constructor and Destructor*/
-	Knight(Cell* boardPosition, Owner player);
+	Knight(Cell* boardPosition, Owner player, Cell* firstCellofBoard);
 	~Knight();
 
 	bool promote();

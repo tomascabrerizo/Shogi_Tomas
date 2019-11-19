@@ -12,8 +12,7 @@ private:
 	Board shogi;
 	int checkedNumber(const char* message);
 	Owner playerTurn;
-	std::vector<piece*>* player1;
-	std::vector<piece*>* player2;
+	bool playerUpWins, playerBottomWins;
 
 public:
 	/*Constructor and Destructor*/

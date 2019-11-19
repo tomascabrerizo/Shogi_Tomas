@@ -3,7 +3,7 @@
 #include "board.h"
 
 
-piece::piece(Cell* boardPosition, Owner player)
+piece::piece(Cell* boardPosition, Owner player, Cell* firstCellofBoard)
 {
 	/*Set the initial position*/
 	position = boardPosition;
@@ -11,7 +11,7 @@ piece::piece(Cell* boardPosition, Owner player)
 	captured = false;
 	promoted = false;
 	canPromote = false;
-
+	this->firstCellofBoard = firstCellofBoard;
 }
 
 bool piece::move(Cell* move)
@@ -173,6 +173,37 @@ void piece::setCapture()
 	captured = true;
 }
 
+void piece::initValidCell(Owner player)
+{
+	validPositions.clear();
+	for (int y = 0; y < 9; y++)
+	{
+		for (int x = 0; x < 9; x++)
+		{
+			if (validPosition(&firstCellofBoard[x + y * 9], player))
+			{
+				validPositions.push_back(firstCellofBoard[x + y * 9]);
+			}
+		}
+	}
+}
+
+std::vector<Cell> piece::validCell(Owner player)
+{
+	validPositions.clear();
+	for (int y = 0; y < 9; y++)
+	{
+		for (int x = 0; x < 9; x++)
+		{
+			if (validPosition(&firstCellofBoard[x+y*9], player))
+			{
+				validPositions.push_back(firstCellofBoard[x + y * 9]);
+			}
+		}
+	}
+	return validPositions;
+}
+
 void piece::setCapture(bool state)
 {
 	captured = state;
@@ -202,3 +233,5 @@ const char* piece::getName()
 {
 	return name;
 }
+
+

@@ -1,5 +1,6 @@
 #pragma once
 struct Cell;
+#include <vector>
 
 //TODO: Change the Players name to:
 //PLAYER_TOP and PLAYER_BOTTOM
@@ -22,6 +23,7 @@ enum Owner
 class piece
 {
 protected:
+	Cell* firstCellofBoard;
 	/*Board position*/
 	Cell* position;
 	/*piece Owner*/
@@ -37,11 +39,13 @@ protected:
 
 	const char* name;
 	char id;
-	virtual bool validPosition(Cell* move, Owner player) = 0;
+
+	/*Vectors of valid positions*/
+	std::vector<Cell> validPositions;
 
 public:
 	/*Constructor and Destructos*/
-	piece(Cell* boardPosition, Owner player);
+	piece(Cell* boardPosition, Owner player, Cell* firstCellofBoard);
 	~piece();
 
 	/*mechanics functions*/
@@ -67,5 +71,9 @@ public:
 	void setPlayer(Owner player);
 
 	const char* getName();
+
+	virtual bool validPosition(Cell* move, Owner player) = 0;
+	void initValidCell(Owner player);
+	std::vector<Cell> validCell(Owner player);
 };
 

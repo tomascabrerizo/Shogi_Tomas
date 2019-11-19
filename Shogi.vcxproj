@@ -133,7 +133,7 @@
     <ClCompile Include="Lance.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pawn.cpp" />
-    <ClCompile Include="pieces.cpp" />
+    <ClCompile Include="piece.cpp" />
     <ClCompile Include="rook.cpp" />
     <ClCompile Include="SilverGeneral.cpp" />
   </ItemGroup>

@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-Lance::Lance(Cell* boardPosition, Owner player, Cell* fistCellofBoard) : piece(boardPosition, player)
+Lance::Lance(Cell* boardPosition, Owner player, Cell* firstCellofBoard) : piece(boardPosition, player, firstCellofBoard)
 {
 	kanjiBottom = " L^ |";
 	kanjiTop = " Lv |";
@@ -13,7 +13,6 @@ Lance::Lance(Cell* boardPosition, Owner player, Cell* fistCellofBoard) : piece(b
 	position->currentPiece = this;
 	name = LANCE;
 	id = 'l';
-	this->fistCellofBoard = fistCellofBoard;
 	canPromote = true;
 }
 
@@ -44,6 +43,13 @@ bool Lance::promote()
 
 bool Lance::validPosition(Cell* move, Owner player)
 {
+	//if (move->currentPiece != NULL)
+	//{
+	//	if (move->currentPiece->getPlayer() == player)
+	//	{
+	//		return false;
+	//	}
+	//}
 	if (!promoted)
 	{
 		if (player == PLAYER_DOWN)
@@ -66,7 +72,7 @@ bool Lance::validPosition(Cell* move, Owner player)
 				while (distanceX != 0 || distanceY != 0)
 				{
 
-					if (fistCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
+					if (firstCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
 					{
 						//TODO: Simplify this if statements
 						//Change the distance to check the next cell
@@ -108,7 +114,7 @@ bool Lance::validPosition(Cell* move, Owner player)
 				while (distanceX != 0 || distanceY != 0)
 				{
 
-					if (fistCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
+					if (firstCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
 					{
 						//TODO: Simplify this if statements
 						//Change the distance to check the next cell

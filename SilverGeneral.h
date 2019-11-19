@@ -7,7 +7,7 @@ private:
 
 public:
 	/*Constructor and Destructor*/
-	SilverGeneral(Cell* boardPosition, Owner player);
+	SilverGeneral(Cell* boardPosition, Owner player, Cell* firstCellofBoard);
 	~SilverGeneral();
 
 	bool promote();

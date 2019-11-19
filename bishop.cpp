@@ -3,7 +3,7 @@
 #include <iostream>
 #include <math.h>
 
-bishop::bishop(Cell* boardPosition, Owner player, Cell* fistCellofBoard) : piece(boardPosition, player)
+bishop::bishop(Cell* boardPosition, Owner player, Cell* firstCellofBoard) : piece(boardPosition, player, firstCellofBoard)
 {
 	//TODO: initiallize currentPiece promote and cap[tured int pieces
 	kanjiBottom = " B^ |";
@@ -14,7 +14,6 @@ bishop::bishop(Cell* boardPosition, Owner player, Cell* fistCellofBoard) : piece
 	position->currentPiece = this;
 	name = BISHOP;
 	id = 'b';
-	this->fistCellofBoard = fistCellofBoard;
 	canPromote = true;
 }
 
@@ -45,6 +44,14 @@ bool bishop::promote()
 
 bool bishop::validPosition(Cell* move, Owner player)
 {
+	//if (move->currentPiece != NULL)
+	//{
+	//	if (move->currentPiece->getPlayer() == player)
+	//	{
+	//		return false;
+	//	}
+	//}
+
 	if (!promoted)
 	{
 		if (abs(move->x - position->x) == abs(move->y - position->y))
@@ -63,7 +70,7 @@ bool bishop::validPosition(Cell* move, Owner player)
 			while (distanceX != 0 && distanceY != 0)
 			{
 				//Checking if in the cell between the movement are others pieces
-				if (fistCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
+				if (firstCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
 				{
 					//TODO: Simplify this if statements
 					distanceX > 0 ? distanceX-- : distanceX;
@@ -107,7 +114,7 @@ bool bishop::validPosition(Cell* move, Owner player)
 			while (distanceX != 0 && distanceY != 0)
 			{
 				//Checking if in the cell between the movement are others pieces
-				if (fistCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
+				if (firstCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
 				{
 					distanceX > 0 ? distanceX-- : distanceX;
 					distanceX < 0 ? distanceX++ : distanceX;

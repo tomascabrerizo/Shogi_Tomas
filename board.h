@@ -36,7 +36,7 @@ public:
 	void initBoard();
 
 	void render();
-	void update();
+	bool update();
 
 	piece* getPiece(int x, int y);
 	Cell* getCell(int x, int y);

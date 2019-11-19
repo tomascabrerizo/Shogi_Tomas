@@ -2,7 +2,7 @@
 #include "Cell.h"
 #include <iostream>
 
-rook::rook(Cell* boardPosition, Owner player, Cell* fistCellofBoard) : piece(boardPosition, player)
+rook::rook(Cell* boardPosition, Owner player, Cell* firstCellofBoard) : piece(boardPosition, player, firstCellofBoard)
 {
 	kanjiBottom = " R^ |";
 	kanjiTop = " Rv |";
@@ -12,7 +12,6 @@ rook::rook(Cell* boardPosition, Owner player, Cell* fistCellofBoard) : piece(boa
 	position->currentPiece = this;
 	name = ROOK;
 	id = 'r';
-	this->fistCellofBoard = fistCellofBoard;
 	canPromote = true;
 }
 
@@ -43,6 +42,13 @@ bool rook::promote()
 
 bool rook::validPosition(Cell* move, Owner player)
 {
+	//if (move->currentPiece != NULL)
+	//{
+	//	if (move->currentPiece->getPlayer() == player)
+	//	{
+	//		return false;
+	//	}
+	//}
 	if (!promoted)
 	{
 		/*Checks if the position where the rook have to move is valid*/
@@ -63,7 +69,7 @@ bool rook::validPosition(Cell* move, Owner player)
 			while (distanceX != 0 || distanceY != 0)
 			{
 
-				if (fistCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
+				if (firstCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
 				{
 					//Change the distance to check the next cell
 					distanceX > 0 ? distanceX-- : distanceX;
@@ -109,7 +115,7 @@ bool rook::validPosition(Cell* move, Owner player)
 			while (distanceX != 0 || distanceY != 0)
 			{
 
-				if (fistCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
+				if (firstCellofBoard[(position->x + distanceX) + (position->y + distanceY) * 9].currentPiece == NULL)
 				{
 					//Change the distance to check the next cell
 					distanceX > 0 ? distanceX-- : distanceX;

@@ -2,7 +2,7 @@
 #include "Cell.h" /*in piece.h is only define*/
 #include <iostream>
 
-GoldGeneral::GoldGeneral(Cell* boardPosition, Owner player) : piece(boardPosition, player)
+GoldGeneral::GoldGeneral(Cell* boardPosition, Owner player, Cell* firstCellofBoard) : piece(boardPosition, player, firstCellofBoard)
 {
 	kanjiBottom = " G^ |";
 	kanjiTop = " Gv |";
@@ -21,6 +21,13 @@ GoldGeneral::~GoldGeneral()
 
 bool GoldGeneral::validPosition(Cell* move, Owner player)
 {
+	//if (move->currentPiece != NULL)
+	//{
+	//	if (move->currentPiece->getPlayer() == player)
+	//	{
+	//		return false;
+	//	}
+	//}
 	if (player == PLAYER_DOWN)
 	{
 		if (((position->y == (move->y + 1)) && (position->x >= (move->x - 1) && position->x <= move->x + 1)) ||

@@ -13,7 +13,7 @@ Board::Board()
 			board[x + y * 9].kanji = "    |";
 		}
 	}
-
+	
 	reInsertPB = false;
 	reInsertPU = false;
 }
@@ -39,9 +39,18 @@ void Board::initBoard()
 	/**************************************************/
 	/*Allocate the pieces on the heap to achive polymorphism*/
 
+	playerUp.push_back(new king(&board[4 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerUp.push_back(new pawn(&board[0 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerUp.push_back(new pawn(&board[8 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+
+	playerBottom.push_back(new GoldGeneral(&board[4 + 2 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+	playerBottom.push_back(new pawn(&board[4 + 3 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+	
+
+/*
 	//player1 and player2 kings;
-	playerBottom.push_back(new king(&board[4 + 8 * 9], PLAYER_DOWN));
-	playerUp.push_back(new king(&board[4 + 0 * 9], PLAYER_UP));
+	playerBottom.push_back(new king(&board[4 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+	playerUp.push_back(new king(&board[4 + 4 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 
 	//player1 and player2 rook;
 	playerBottom.push_back(new rook(&board[7 + 7 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
@@ -50,8 +59,8 @@ void Board::initBoard()
 	//Player1 and player2 pawns
 	for (int i = 0; i < 9; i++)
 	{
-		playerBottom.push_back(new pawn(&board[i + 6 * 9], PLAYER_DOWN));
-		playerUp.push_back(new pawn(&board[i + 2 * 9], PLAYER_UP));
+		playerBottom.push_back(new pawn(&board[i + 6 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+		playerUp.push_back(new pawn(&board[i + 2 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 	}
 
 	//Player1 and player2 bishop
@@ -59,31 +68,50 @@ void Board::initBoard()
 	playerUp.push_back(new bishop(&board[7 + 1 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 
 	//Player1 and Player 2 Gold Generlars
-	playerBottom.push_back(new GoldGeneral(&board[3 + 8 * 9], PLAYER_DOWN));
-	playerBottom.push_back(new GoldGeneral(&board[5 + 8 * 9], PLAYER_DOWN));
-	playerUp.push_back(new GoldGeneral(&board[3 + 0 * 9], PLAYER_UP));
-	playerUp.push_back(new GoldGeneral(&board[5 + 0 * 9], PLAYER_UP));
+	playerBottom.push_back(new GoldGeneral(&board[3 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+	playerBottom.push_back(new GoldGeneral(&board[5 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+	playerUp.push_back(new GoldGeneral(&board[3 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerUp.push_back(new GoldGeneral(&board[5 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 
 	//Player1 and Player 2 Silver Generlars
-	playerBottom.push_back(new SilverGeneral(&board[2 + 8 * 9], PLAYER_DOWN));
-	playerBottom.push_back(new SilverGeneral(&board[6 + 8 * 9], PLAYER_DOWN));
-	playerUp.push_back(new SilverGeneral(&board[2 + 0 * 9], PLAYER_UP));
-	playerUp.push_back(new SilverGeneral(&board[6 + 0 * 9], PLAYER_UP));
+	playerBottom.push_back(new SilverGeneral(&board[2 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+	playerBottom.push_back(new SilverGeneral(&board[6 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+	playerUp.push_back(new SilverGeneral(&board[2 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerUp.push_back(new SilverGeneral(&board[6 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 
 	//Player1 and Player2 knights
-	playerBottom.push_back(new Knight(&board[1 + 8 * 9], PLAYER_DOWN));
-	playerBottom.push_back(new Knight(&board[7 + 8 * 9], PLAYER_DOWN));
-	playerUp.push_back(new Knight(&board[1 + 0 * 9], PLAYER_UP));
-	playerUp.push_back(new Knight(&board[7 + 0 * 9], PLAYER_UP));
+	playerBottom.push_back(new Knight(&board[1 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+	playerBottom.push_back(new Knight(&board[7 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
+	playerUp.push_back(new Knight(&board[1 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+	playerUp.push_back(new Knight(&board[7 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 
 	//Player1 and Player2 Lancers
 	playerBottom.push_back(new Lance(&board[0 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
 	playerBottom.push_back(new Lance(&board[8 + 8 * 9], PLAYER_DOWN, &board[0 + 0 * 9]));
 	playerUp.push_back(new Lance(&board[0 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
 	playerUp.push_back(new Lance(&board[8 + 0 * 9], PLAYER_UP, &board[0 + 0 * 9]));
+*/
+
+	for (piece* tmp : playerBottom)
+	{
+		tmp->initValidCell(PLAYER_DOWN);
+		if (tmp->getName() == KING)
+		{
+			static_cast<king*>(tmp)->updateEnemyPosition();
+		}
+	}
+	for (piece* tmp : playerUp)
+	{
+		tmp->initValidCell(PLAYER_UP);
+		if (tmp->getName() == KING)
+		{
+			static_cast<king*>(tmp)->updateEnemyPosition();
+		}
+	}
+
 }
 
-void Board::update()
+bool Board::update()
 {
 	/*Check for new captured pieces, if one piece is capture change sides*/
 	for (int i = 0; i < playerBottom.size(); i++)
@@ -113,6 +141,7 @@ void Board::update()
 			playerUp.erase(playerUp.begin() + i);
 		}	
 	}
+	return true;
 }
 
 void Board::render()

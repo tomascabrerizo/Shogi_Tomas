@@ -2,7 +2,7 @@
 #include "Cell.h"
 #include <iostream>
 
-pawn::pawn(Cell* boardPosition, Owner player) : piece(boardPosition, player)
+pawn::pawn(Cell* boardPosition, Owner player, Cell* firstCellofBoard) : piece(boardPosition, player, firstCellofBoard)
 {
 	kanjiBottom = " P^ |";
 	kanjiTop = " Pv |";
@@ -43,6 +43,13 @@ bool pawn::promote()
 
 bool pawn::validPosition(Cell* move, Owner player)
 {
+	//if (move->currentPiece != NULL)
+	//{
+	//	if (move->currentPiece->getPlayer() == player)
+	//	{
+	//		return false;
+	//	}
+	//}
 	if (!promoted)
 	{
 		if (player == PLAYER_DOWN)

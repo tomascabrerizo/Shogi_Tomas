@@ -25,6 +25,8 @@ Game::Game()
 	/*Initllize Board*/
 	shogi.initBoard();
 	playerTurn = PLAYER_UP;
+	playerBottomWins = false;
+	playerUpWins = false;
 }
 
 Game::~Game()
@@ -117,6 +119,29 @@ void Game::update()
 				}
 			}
 		}
+		for (int i = 0; i < shogi.getPlayerUp()->size(); i++)
+		{
+			shogi.getPlayerUp()->at(i)->initValidCell(PLAYER_DOWN);
+			if (shogi.getPlayerUp()->at(i)->getName() == KING)
+			{
+				static_cast<king*>(shogi.getPlayerUp()->at(i))->updateEnemyPosition();
+			}
+		}
+		/*Check for check Mate*/
+		for (int i = 0; i < shogi.getPlayerBottom()->size(); i++)
+		{
+			if (shogi.getPlayerBottom()->at(i)->getName() == KING)
+			{
+				/*Cast to king to acces to checkMate method*/
+				if (static_cast<king*>(shogi.getPlayerBottom()->at(i))->isInCheckMate())
+				{
+					/*Player Up wins*/
+					playerUpWins = true;
+					gameRunning = false;
+				}
+			}
+		}
+
 		playerTurn = PLAYER_DOWN;
 	}
 	else
@@ -201,10 +226,32 @@ void Game::update()
 				}
 			}
 		}
+		for (int i = 0; i < shogi.getPlayerBottom()->size(); i++)
+		{
+			shogi.getPlayerBottom()->at(i)->initValidCell(PLAYER_DOWN);
+			if (shogi.getPlayerBottom()->at(i)->getName() == KING)
+			{
+				static_cast<king*>(shogi.getPlayerBottom()->at(i))->updateEnemyPosition();
+			}
+		}
+		/*Check for check Mate*/
+		for (int i = 0; i < shogi.getPlayerUp()->size(); i++)
+		{
+			if (shogi.getPlayerUp()->at(i)->getName() == KING)
+			{
+				static_cast<king*>(shogi.getPlayerUp()->at(i))->updateEnemyPosition();
+				/*Cast to king to acces to checkMate method*/
+				if (static_cast<king*>(shogi.getPlayerUp()->at(i))->isInCheckMate())
+				{
+					/*Player bottom wins*/
+					playerBottomWins = true;
+					gameRunning = false;
+				}
+			}
+		}
 		playerTurn = PLAYER_UP;
 	}
 
-	//At the start of every turn, update the shogi table to get all the laters changes
 	shogi.update();
 }
 
@@ -215,6 +262,20 @@ void Game::render()
 	std::cout << "|---------------TOMAS-SHOGI-------------|" << std::endl;
 	std::cout << "|---------------------------------------|" << std::endl;
 	shogi.render();
+	if (playerBottomWins)
+	{
+		std::cout << "|---------------------------------------|" << std::endl;
+		std::cout << "|---------------CHECK MATE--------------|" << std::endl;
+		std::cout << "|-----------BOTTOM-PLAYER-WINS----------|" << std::endl;
+		std::cout << "|---------------------------------------|" << std::endl;
+	}
+	if (playerUpWins)
+	{
+		std::cout << "|---------------------------------------|" << std::endl;
+		std::cout << "|---------------CHECK MATE--------------|" << std::endl;
+		std::cout << "|-------------UP-PLAYER-WINS------------|" << std::endl;
+		std::cout << "|---------------------------------------|" << std::endl;
+	}
 }
 
 int Game::checkedNumber(const char* message)
