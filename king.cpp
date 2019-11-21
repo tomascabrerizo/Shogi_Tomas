@@ -45,6 +45,7 @@ void king::updateEnemyPosition()
 	}
 }
 
+
 bool king::isInCheck()
 {
 	updateEnemyPosition();
@@ -73,7 +74,8 @@ bool king::validPosition(Cell* move, Owner player)
 	if ((move->x == position->x + 1 || move->x == position->x - 1 || move->x == position->x) &&
 		(move->y == position->y + 1 || move->y == position->y - 1 || move->y == position->y))
 	{
-
+		position->currentPiece = NULL;
+		updateEnemyPosition();
 		bool validPos = true;
 		for (int j = 0; j < enemiesPositions.size(); j++)
 		{
@@ -84,6 +86,7 @@ bool king::validPosition(Cell* move, Owner player)
 				break;
 			}
 		}
+		position->currentPiece = this;
 
 		return validPos;
 		

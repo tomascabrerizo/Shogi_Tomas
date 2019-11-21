@@ -14,6 +14,9 @@ private:
 	Owner playerTurn;
 	bool playerTopWins, playerBottomWins;
 
+	king* kingTop;
+	king* kingBottom;
+
 public:
 	/*Constructor and Destructor*/
 	Game();

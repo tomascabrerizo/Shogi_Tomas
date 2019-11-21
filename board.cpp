@@ -38,34 +38,32 @@ void Board::initBoard()
 	/*initialized player pieces positions on the board*/
 	/**************************************************/
 	/*Allocate the pieces on the heap to achive polymorphism*/
-
-	
 	
 	//CHECK MATE TEST
-
-	playerTop.push_back(new king(&board[0 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
-	playerTop.push_back(new rook(&board[1 + 1 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
-	//playerTop.push_back(new pawn(&board[8 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
-
-	playerBottom.push_back(new rook(&board[0 + 2 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
-	//playerBottom.push_back(new pawn(&board[4 + 3 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
 	
+	//playerBottom.push_back(new king(&board[1 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	//playerBottom.push_back(new pawn(&board[4 + 4 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	//
+	//playerTop.push_back(new rook(&board[0 + 1 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
+	//playerTop.push_back(new pawn(&board[7 + 8 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 	
-	/*
 	//player1 and player2 kings;
-	playerBottom.push_back(new king(&board[4 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerBottom.push_back(new king(&board[4 + 5 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
 	playerTop.push_back(new king(&board[4 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 
 	//player1 and player2 rook;
 	playerBottom.push_back(new rook(&board[7 + 7 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
 	playerTop.push_back(new rook(&board[1 + 1 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 
-	//Player1 and player2 pawns
-	for (int i = 0; i < 9; i++)
-	{
-		playerBottom.push_back(new pawn(&board[i + 6 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
-		playerTop.push_back(new pawn(&board[i + 2 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
-	}
+	playerBottom.push_back(new pawn(&board[4 + 4 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	playerTop.push_back(new pawn(&board[4 + 3 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
+
+	////Player1 and player2 pawns
+	//for (int i = 0; i < 9; i++)
+	//{
+	//	playerBottom.push_back(new pawn(&board[i + 6 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
+	//	playerTop.push_back(new pawn(&board[i + 2 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
+	//}
 
 	//Player1 and player2 bishop
 	playerBottom.push_back(new bishop(&board[1 + 7 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
@@ -94,8 +92,7 @@ void Board::initBoard()
 	playerBottom.push_back(new Lance(&board[8 + 8 * 9], PLAYER_BOTTOM, &board[0 + 0 * 9]));
 	playerTop.push_back(new Lance(&board[0 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
 	playerTop.push_back(new Lance(&board[8 + 0 * 9], PLAYER_TOP, &board[0 + 0 * 9]));
-
-	*/
+	
 
 	/*Init all the pieces valid positions and the king enemy positions*/
 	for (piece* tmp : playerBottom)

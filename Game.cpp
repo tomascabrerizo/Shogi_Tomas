@@ -27,6 +27,25 @@ Game::Game()
 	playerTurn = PLAYER_TOP;
 	playerBottomWins = false;
 	playerTopWins = false;
+
+
+	//Get the pointers to the kings pieces
+	for (int i = 0; i < shogi.getPlayerTop()->size(); i++)
+	{
+		if (shogi.getPlayerTop()->at(i)->getName() == KING)
+		{
+			kingTop = static_cast<king*>(shogi.getPlayerTop()->at(i));
+		}
+	}
+
+
+	for (int i = 0; i < shogi.getPlayerBottom()->size(); i++)
+	{
+		if (shogi.getPlayerBottom()->at(i)->getName() == KING)
+		{
+			kingBottom = static_cast<king*>(shogi.getPlayerBottom()->at(i));
+		}
+	}
 }
 
 Game::~Game()
@@ -36,13 +55,14 @@ Game::~Game()
 void Game::update()
 {
 	bool moveSucces = false; /*flag to check is the move was succesful*/
+	bool kingInCheck = false; /*flag to check if the king is not in ckech after his turn*/
 
 	/*TURN PLAYER UP*/
 	if (playerTurn == PLAYER_TOP)
 	{
 		std::string playerUP = "|-----------------|\n|----PLAYER_UP----|\n|-----------------|";
 		std::cout << playerUP << std::endl;
-		while (!moveSucces)
+		while (!moveSucces || kingInCheck)
 		{
 			if (gameInput.checkForCommand())
 			{
@@ -56,7 +76,32 @@ void Game::update()
 							if (shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->move(shogi.getCell(gameInput.getXDest(), gameInput.getYDest())))
 							{
 								moveSucces = true;
-								//commandSucces = true;
+								/*Checks if the top king is still in check at the end of the turn, if it is check mate*/
+								if (kingTop != NULL && kingTop->isInCheck())
+								{
+									kingInCheck = true;
+
+									/*If after the move the king is still in check, force to reverse the movement*/
+									shogi.getPiece(gameInput.getXDest(), gameInput.getYDest())->forceMove(shogi.getCell(gameInput.getXSource(), gameInput.getYSource()));
+									
+									//HADCODE the bug where if the movement capture a enemy but the king is still in check
+									//HADCODE need to reinsert the capture piece
+									if (shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->getLastPieceCaptured() != NULL)
+									{
+										shogi.getCell(gameInput.getXDest(), gameInput.getYDest())->currentPiece =
+											shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->getLastPieceCaptured();
+										shogi.getCell(gameInput.getXDest(), gameInput.getYDest())->kanji = shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->getKanjiBottom();
+
+										shogi.getPiece(gameInput.getXDest(), gameInput.getYDest())->setCapture(false);
+										//shogi.getCell(gameInput.getXDest(), gameInput.getYDest())->currentPiece = NULL;
+										shogi.getPiece(gameInput.getXDest(), gameInput.getYDest())->forceSetPosition(shogi.getCell(gameInput.getXDest(), gameInput.getYDest()));
+									}
+									
+								}
+								else
+								{
+									kingInCheck = false;
+								}
 							}
 						}
 						else
@@ -113,6 +158,7 @@ void Game::update()
 				case END:
 					gameRunning = false;
 					moveSucces = true;
+					kingInCheck = false;
 					break;
 				default:
 					break;
@@ -121,33 +167,14 @@ void Game::update()
 		}
 		
 		/*Check for check Mate*/
-		for (int i = 0; i < shogi.getPlayerBottom()->size(); i++)
+		/*Cast to king to acces to checkMate method*/
+		if (kingBottom != NULL && kingBottom->isInCheckMate())
 		{
-			if (shogi.getPlayerBottom()->at(i)->getName() == KING)
-			{
-				/*Cast to king to acces to checkMate method*/
-				if (static_cast<king*>(shogi.getPlayerBottom()->at(i))->isInCheckMate())
-				{
-					/*Player Up wins*/
-					playerTopWins = true;
-					gameRunning = false;
-				}
-			}
+			/*Player Up wins*/
+			playerTopWins = true;
+			gameRunning = false;
 		}
-		/*Checks if the top king is still in check at the end of the turn, if it is check mate*/
-		for (int i = 0; i < shogi.getPlayerTop()->size(); i++)
-		{
-			if (shogi.getPlayerTop()->at(i)->getName() == KING)
-			{
-				/*Cast to king to acces to checkMate method*/
-				if (static_cast<king*>(shogi.getPlayerTop()->at(i))->isInCheck())
-				{
-					/*Player Up wins*/
-					playerBottomWins = true;
-					gameRunning = false;
-				}
-			}
-		}
+		
 		playerTurn = PLAYER_BOTTOM;
 	}
 	else
@@ -155,7 +182,7 @@ void Game::update()
 		/*PLAYER BOTTOM*/
 		std::string playerBOTTOM = "|-----------------|\n|--PLAYER_BOTTOM--|\n|-----------------|";									
 		std::cout << playerBOTTOM << std::endl;
-		while (!moveSucces)
+		while (!moveSucces || kingInCheck)
 		{
 			if (gameInput.checkForCommand())
 			{
@@ -169,8 +196,33 @@ void Game::update()
 							if (shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->move(shogi.getCell(gameInput.getXDest(), gameInput.getYDest())))
 							{
 								moveSucces = true;
-								//commandSucces = true;
+								/*Checks if the top king is still in check at the end of the turn, if it is check mate*/
+								if (kingBottom != NULL && kingBottom->isInCheck())
+								{
+									kingInCheck = true;
+
+									/*If after the move the king is still in check, force to reverse the movement*/
+									shogi.getPiece(gameInput.getXDest(), gameInput.getYDest())->forceMove(shogi.getCell(gameInput.getXSource(), gameInput.getYSource()));
+
+									//HADCODE the bug where if the movement capture a enemy but the king is still in check
+									//HADCODE need to reinsert the capture piece
+									if (shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->getLastPieceCaptured() != NULL)
+									{
+										shogi.getCell(gameInput.getXDest(), gameInput.getYDest())->currentPiece =
+											shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->getLastPieceCaptured();
+										shogi.getCell(gameInput.getXDest(), gameInput.getYDest())->kanji = shogi.getPiece(gameInput.getXSource(), gameInput.getYSource())->getKanjiTop();
+
+										shogi.getPiece(gameInput.getXDest(), gameInput.getYDest())->setCapture(false);
+										//shogi.getCell(gameInput.getXDest(), gameInput.getYDest())->currentPiece = NULL;
+										shogi.getPiece(gameInput.getXDest(), gameInput.getYDest())->forceSetPosition(shogi.getCell(gameInput.getXDest(), gameInput.getYDest()));
+									}
+								}
+								else
+								{
+									kingInCheck = false;
+								}
 							}
+							if (kingBottom != NULL) kingBottom->updateEnemyPosition();
 						}
 						else
 						{
@@ -226,39 +278,21 @@ void Game::update()
 				case END:
 					gameRunning = false;
 					moveSucces = true;
+					kingInCheck = false;
 					break;
 				default:
 					break;
 				}
 			}
 		}
-		for (int i = 0; i < shogi.getPlayerTop()->size(); i++)
+		
+		if (kingTop != NULL && kingTop->isInCheckMate())
 		{
-			if (shogi.getPlayerTop()->at(i)->getName() == KING)
-			{
-				/*Cast to king to acces to checkMate method*/
-				if (static_cast<king*>(shogi.getPlayerTop()->at(i))->isInCheckMate())
-				{
-					/*Player bottom wins*/
-					playerBottomWins = true;
-					gameRunning = false;
-				}
-			}
+			/*Player Up wins*/
+			playerBottomWins = true;
+			gameRunning = false;
 		}
-		/*Checks if the Bottom king is still in check at the end of the turn, if it is check mate*/
-		for (int i = 0; i < shogi.getPlayerBottom()->size(); i++)
-		{
-			if (shogi.getPlayerBottom()->at(i)->getName() == KING)
-			{
-				/*Cast to king to acces to checkMate method*/
-				if (static_cast<king*>(shogi.getPlayerBottom()->at(i))->isInCheck())
-				{
-					/*Player Up wins*/
-					playerTopWins = true;
-					gameRunning = false;
-				}
-			}
-		}
+
 		playerTurn = PLAYER_TOP;
 	}
 

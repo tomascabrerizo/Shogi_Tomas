@@ -40,6 +40,7 @@ protected:
 	const char* name;
 	char id;
 
+	piece* lastPieceCaptured;
 	/*Vectors of valid positions*/
 	std::vector<Cell> validPositions;
 
@@ -50,12 +51,15 @@ public:
 
 	/*mechanics functions*/
 	bool move(Cell* move);
+	void forceMove(Cell* move);
+	void forceSetPosition(Cell* boardPosition);
 
 	/*Getters and Setters*/
 	const char* getKanjiTop();
 	const char* getKanjiBottom();
 
 	char getId();
+	piece* getLastPieceCaptured();
 
 	bool setPosition(Cell* boardPosition);
 

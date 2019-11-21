@@ -12,6 +12,7 @@ piece::piece(Cell* boardPosition, Owner player, Cell* firstCellofBoard)
 	promoted = false;
 	canPromote = false;
 	this->firstCellofBoard = firstCellofBoard;
+	lastPieceCaptured = NULL;
 }
 
 bool piece::move(Cell* move)
@@ -25,6 +26,8 @@ bool piece::move(Cell* move)
 		}
 		else if (move->currentPiece != NULL && move->currentPiece->getPlayer() != player)
 		{
+			/*Set last piece captured*/
+			lastPieceCaptured = move->currentPiece;
 			/*piece canged position, free current position*/
 			/*land in enemy piece, capture it*/
 			move->currentPiece->setCapture();
@@ -37,7 +40,6 @@ bool piece::move(Cell* move)
 			/*pieces Pawn new Position*/
 			//TODO: simply render the PLAYER_DOWN character
 			position->currentPiece = this;
-			std::cout << name << " Moved" << std::endl;
 			if (player == PLAYER_TOP && position->y >= 6 && canPromote)
 			{
 				char answer;
@@ -69,6 +71,7 @@ bool piece::move(Cell* move)
 		else
 		{
 			/*piece canged position, free current position*/
+			lastPieceCaptured = NULL;
 			/*Set the kanji in the new position*/
 			move->kanji = position->kanji;
 			/*Clear the old position kanji*/
@@ -78,7 +81,6 @@ bool piece::move(Cell* move)
 			/*piece Pawn new Position*/
 			//TODO: simply render the PLAYER_DOWN character
 			position->currentPiece = this;
-			std::cout << name << " Moved" << std::endl;
 			if (player == PLAYER_TOP && position->y >= 6 && canPromote)
 			{
 				char answer;
@@ -116,6 +118,27 @@ bool piece::move(Cell* move)
 	return false;
 }
 
+void piece::forceMove(Cell* move)
+{
+	/*piece canged position, free current position*/
+			/*Set the kanji in the new position*/
+	move->kanji = position->kanji;
+	/*Clear the old position kanji*/
+	position->kanji = "    |";
+	position->currentPiece = NULL;
+	position = move;
+	/*piece Pawn new Position*/
+	//TODO: simply render the PLAYER_DOWN character
+	position->currentPiece = this;
+	std::cout << "You cannot move this piece there, you king is in check!" << std::endl;
+}
+
+void piece::forceSetPosition(Cell* boardPosition)
+{
+	position = boardPosition;
+	position->currentPiece = this;
+}
+
 const char* piece::getKanjiTop()
 {
 	return kanjiTop;
@@ -129,6 +152,11 @@ const char* piece::getKanjiBottom()
 char piece::getId()
 {
 	return id;
+}
+
+piece* piece::getLastPieceCaptured()
+{
+	return lastPieceCaptured;
 }
 
 piece::~piece()
@@ -207,6 +235,11 @@ std::vector<Cell> piece::validCell(Owner player)
 void piece::setCapture(bool state)
 {
 	captured = state;
+	if (state == false)
+	{
+		if (this->player == PLAYER_BOTTOM) this->player = PLAYER_TOP;
+		else if (this->player == PLAYER_TOP) this->player = PLAYER_BOTTOM;
+	}
 }
 
 bool piece::isCapture()
