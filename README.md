@@ -15,16 +15,17 @@ Caracteristicas:
 
 - Jaque mate. Contiene BUGS
 
+Leer Instrucciones de Juego en PDF, se encuentra entro los archivos en el repositorio
 
 Comandos:
 
-fi: posici髇 en fila inicial 0..8
+fi: posici贸n en fila inicial 0..8
 
-ci: posici髇 en columna inicial 0..8
+ci: posici贸n en columna inicial 0..8
 
-ff: posici髇 en fila final 0..8
+ff: posici贸n en fila final 0..8
 
-cf: posici髇 en columna final 0..8
+cf: posici贸n en columna final 0..8
 
 p: primera letra de pieza p, b, r, n, l, s, g
 
