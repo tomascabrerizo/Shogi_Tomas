@@ -124,9 +124,9 @@ bool Board::update()
 
 		if (playerBottom[i]->isCapture())
 		{
-			playerBottom[i]->setCapture(false);
+			playerBottom[i]->setCaptureNotChangePlayer(false);
 			playerTop.push_back(playerBottom[i]);
-			std::cout << "One " << playerBottom[i]->getName() << " change side " << std::endl;
+			//std::cout << "One " << playerBottom[i]->getName() << " change side " << std::endl;
 			playerBottom.erase(playerBottom.begin()+i);
 		}
 	}
@@ -138,9 +138,9 @@ bool Board::update()
 
 		if (playerTop[i]->isCapture())
 		{
-			playerTop[i]->setCapture(false);
+			playerTop[i]->setCaptureNotChangePlayer(false);
 			playerBottom.push_back(playerTop[i]);
-			std::cout << "One " << playerTop[i]->getName() << " change side " << std::endl;
+			//std::cout << "One " << playerTop[i]->getName() << " change side " << std::endl;
 			playerTop.erase(playerTop.begin() + i);
 		}	
 	}

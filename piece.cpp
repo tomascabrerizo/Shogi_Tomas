@@ -176,6 +176,53 @@ bool piece::setPosition(Cell* boardPosition)
 	return false;
 }
 
+
+bool piece::insertPiece(Cell* boardPosition)
+{
+	//Checks if the board position where we want to set the piece is empty
+	if (boardPosition->currentPiece == NULL)
+	{
+		bool validPos = true;
+		//Check if in the entire column for other pawns
+		if (id == 'p')
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				//Check if in the entire column for other pawns
+				if (firstCellofBoard[boardPosition->x + i * 9].currentPiece != NULL &&
+					firstCellofBoard[boardPosition->x + i * 9].currentPiece->getId() == 'p' &&
+					firstCellofBoard[boardPosition->x + i * 9].currentPiece->getPlayer() == player)
+					validPos = false;
+			}
+		}
+		//Check if in the pawn or lancer is in ilegal position
+		if (id == 'p' || id == 'l')
+		{
+			if (player == PLAYER_BOTTOM && boardPosition->y == 0)
+				validPos = false;
+			if (player == PLAYER_TOP && boardPosition->y == 8)
+				validPos = false;
+		}
+		//check is knight is in ilegal position
+		if (id == 'n')
+		{
+			if (player == PLAYER_BOTTOM && boardPosition->y <= 1)
+				validPos = false;
+			if (player == PLAYER_TOP && boardPosition->y >= 7)
+				validPos = false;
+		}
+
+		if(validPos)
+		{
+			position = boardPosition;
+			position->currentPiece = this;
+			return true;
+		}
+	}
+	return false;
+}
+
+
 bool piece::promote()
 {
 	std::cout << "this pieces cannot promote" << std::endl;
@@ -240,6 +287,11 @@ void piece::setCapture(bool state)
 		if (this->player == PLAYER_BOTTOM) this->player = PLAYER_TOP;
 		else if (this->player == PLAYER_TOP) this->player = PLAYER_BOTTOM;
 	}
+}
+
+void piece::setCaptureNotChangePlayer(bool state)
+{
+	captured = state;
 }
 
 bool piece::isCapture()

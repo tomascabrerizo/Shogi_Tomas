@@ -147,10 +147,22 @@ void Game::update()
 						if (shogi.getPlayerTop()->at(i)->getPosition() == NULL && 
 							shogi.getPlayerTop()->at(i)->getId() == gameInput.getPieceType())
 						{
+
+							if (shogi.getPlayerTop()->at(i)->insertPiece(&(shogi.getBoard()[gameInput.getXSource() + gameInput.getYSource() * 9])))
+							{
+								shogi.getPlayerTop()->at(i)->getPosition()->kanji = shogi.getPlayerTop()->at(i)->getKanjiTop();
+								moveSucces = true;
+							}
+							else
+							{
+								std::cout << "Cannot insert this piece there" << std::endl;
+							}
+							/*
 							//TODO: check for piece type and check if the position to set is valid
 							shogi.getPlayerTop()->at(i)->setPosition(&(shogi.getBoard()[gameInput.getXSource() + gameInput.getYSource() * 9]));
 							shogi.getPlayerTop()->at(i)->getPosition()->kanji = shogi.getPlayerTop()->at(i)->getKanjiTop();
-							moveSucces = true;
+							
+							*/
 							break;
 						}
 					}
@@ -267,10 +279,21 @@ void Game::update()
 						if (shogi.getPlayerBottom()->at(i)->getPosition() == NULL &&
 							shogi.getPlayerBottom()->at(i)->getId() == gameInput.getPieceType())
 						{
+							if (shogi.getPlayerBottom()->at(i)->insertPiece(&(shogi.getBoard()[gameInput.getXSource() + gameInput.getYSource() * 9])))
+							{
+								shogi.getPlayerBottom()->at(i)->getPosition()->kanji = shogi.getPlayerBottom()->at(i)->getKanjiBottom();
+								moveSucces = true;
+							}
+							else
+							{
+								std::cout << "Cannot insert this piece there" << std::endl;
+							}
+							/*
 							//TODO: check for piece type and check if the position to set is valid
-							shogi.getPlayerBottom()->at(i)->setPosition(&(shogi.getBoard()[gameInput.getXSource() + gameInput.getYSource() * 9]));
-							shogi.getPlayerBottom()->at(i)->getPosition()->kanji = shogi.getPlayerBottom()->at(i)->getKanjiBottom();
-							moveSucces = true;
+							shogi.getPlayerTop()->at(i)->setPosition(&(shogi.getBoard()[gameInput.getXSource() + gameInput.getYSource() * 9]));
+							shogi.getPlayerTop()->at(i)->getPosition()->kanji = shogi.getPlayerTop()->at(i)->getKanjiTop();
+
+							*/
 							break;
 						}
 					}

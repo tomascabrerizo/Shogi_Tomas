@@ -62,6 +62,7 @@ public:
 	piece* getLastPieceCaptured();
 
 	bool setPosition(Cell* boardPosition);
+	bool insertPiece(Cell* boardPosition);
 
 	virtual bool promote();
 	virtual void promote(bool value);
@@ -69,6 +70,7 @@ public:
 
 	void setCapture();
 	void setCapture(bool state);
+	void setCaptureNotChangePlayer(bool state);
 	bool isCapture();
 
 	Owner getPlayer();

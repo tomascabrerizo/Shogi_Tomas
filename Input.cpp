@@ -60,10 +60,10 @@ bool Input::checkForCommand()
 			(command[nameSize + 5] == ')'))
 		{
 			commandType = MOVE;
-			xSource = command[nameSize + 1] - 48;
-			ySource = command[nameSize + 2] - 48;
-			xDest = command[nameSize + 3] - 48;
-			yDest = command[nameSize + 4] - 48;
+			ySource = command[nameSize + 1] - 48;
+			xSource = command[nameSize + 2] - 48;
+			yDest = command[nameSize + 3] - 48;
+			xDest = command[nameSize + 4] - 48;
 			return true;
 		}
 	}
@@ -75,8 +75,8 @@ bool Input::checkForCommand()
 			(command[nameSize + 3] == ')'))
 		{
 			commandType = PROMOTE;
-			xSource = command[nameSize + 1] - 48;
-			ySource = command[nameSize + 2] - 48;
+			ySource = command[nameSize + 1] - 48;
+			xSource = command[nameSize + 2] - 48;
 			return true;
 		}
 	}
@@ -93,8 +93,8 @@ bool Input::checkForCommand()
 		{
 			commandType = INSERT;
 			pieceType = command[nameSize + 1];
-			xSource = command[nameSize + 2] - 48;
-			ySource = command[nameSize + 3] - 48;
+			ySource = command[nameSize + 2] - 48;
+			xSource = command[nameSize + 3] - 48;
 			return true;
 		}
 	}
